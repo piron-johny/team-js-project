@@ -16,25 +16,34 @@
   text-decoration: none;
 }
 
-.nav {
-  display: flex;
-  color: getColor('header-text');
-
-  margin-top: 50px;
+.button-home {
+  height: 30px;
+  width: 80px;
+  margin-top: 40px;
+  background: transparent;
 
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
-
-  list-style: none;
+  color: getColor('header-text');
+  border: none;
 }
 
-.nav__list {
-  &:not(:last-child) {
-    margin-right: 25px;
-  }
+.button-library {
+  height: 30px;
+  width: 100px;
+  margin-top: 40px;
+  background: transparent;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: getColor('header-text');
+  border: none;
 }
 
 .text-logo {
