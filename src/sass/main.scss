@@ -7,9 +7,14 @@
 
 @import 'utils/variables';
 @import 'base/null';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 @import 'utils/mixins';
 @import 'utils/colors';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+@import 'utils/mixin';
+@import 'modal-card';
+
 @import 'components/footer';
+
 
 // @import './form';

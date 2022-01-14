@@ -1,0 +1,6 @@
+@mixin text($f-w: 500, $f-s: 12px, $l-h: 1.33, $align: left) {
+  font-weight: $f-w;
+  font-size: $f-s;
+  line-height: $l-h;
+  text-align: $align;
+}
