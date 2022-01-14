@@ -5,9 +5,11 @@
 
 // Стили для файла с примером HTML-фрагмента
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+@import 'utils/variables';
 @import 'base/null';
+@import 'utils/mixins';
 @import 'utils/colors';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+@import 'components/footer';
 
 // @import './form';
-
