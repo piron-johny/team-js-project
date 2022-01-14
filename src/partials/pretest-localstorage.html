@@ -1,0 +1,35 @@
+<!-- login -->
+
+<form action="POST" class="form" id="login-form-post">
+    <label>
+        <span>Name:</span>
+        <input type="text" name="userName" class="form__input" />
+    </label>
+    <label>
+        <span>Email:</span>
+        <input type="email" name="userEmail" class="form__input" />
+    </label>
+    <label>
+        <span>Password:</span>
+        <input type="password" name="userPassword" class="form__input" />
+    </label>
+    <button type="submit" class="form__btn btn">Send</button>
+</form>
+
+<form action="GET" class="form" id="login-form-get">
+    <label>
+        <span>Email:</span>
+        <input type="text" name="userEmail" class="form__input" />
+    </label>
+    <label>
+        <span>Password:</span>
+        <input type="text" name="userPassword" class="form__input" />
+    </label>
+    <button type="submit" class="form__btn btn">Send</button>
+</form>
+
+<div class="movie_data"></div>
+
+
+<button type="button" class="button__watched">Watched</button>
+<button type="button" class="button__queue"></button>
