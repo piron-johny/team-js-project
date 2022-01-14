@@ -82,4 +82,4 @@ var e,t=arguments[3];!function(t,r){"object"==typeof exports&&"object"==typeof m
 },{"../hbs/moviesRenderHBS.hbs":"LCBw","axios":"dZBD"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/pagination.js"),require("./js/movies"),require("./js/watched_queued_movies");
 },{"./sass/main.scss":"clu1","./js/pagination.js":"o8lo","./js/movies":"GsTD","./js/watched_queued_movies":"G0TZ"}]},{},["Focm"], null)
-//# sourceMappingURL=/team-js-project/src.a36da156.js.map
+//# sourceMappingURL=/team-js-project/src.a271b021.js.map
