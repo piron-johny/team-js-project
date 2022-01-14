@@ -1,0 +1,26 @@
+{{#each this}}
+  <li>
+    <img
+      src='https://image.tmdb.org/t/p/w300/{{poster_path}}'
+      alt='Image of {{original_title}}'
+      class='poster-img'
+    />
+    {{#if title}}
+      <h3 class='title'>{{title}}</h3>
+    {{else}}
+      <h3 class='title'>{{name}}</h3>
+    {{/if}}
+
+    {{#each genre_ids}}
+      <ul class='genres'>
+        <li class='genres__list'>{{this}}</li>
+      </ul>
+    {{/each}}
+
+    {{#if release_date}}
+      <p class='date'>{{release_date}}</p>
+    {{else}}
+      <p class='date'>{{first_air_date}}</p>
+    {{/if}}
+  </li>
+{{/each}}

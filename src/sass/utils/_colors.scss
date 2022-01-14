@@ -1,0 +1,15 @@
+$colors: (
+  'primary-text': #000000,
+  'header-text': #ffffff,
+  'accent': #ff6b08,
+  'bg-page': #e5e5e5,
+  'footer-text': #545454,
+  'notification-text': #ff001b,
+  'modal-text': #8c8c8c,
+  'modal-rectangle': #f7f7f7,
+  'accent-modal': #ff6b01,
+);
+
+@function getColor($key) {
+  @return map-get($colors, $key);
+}

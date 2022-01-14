@@ -1,0 +1,25 @@
+.btn {
+  width: 100%;
+  padding: 10px;
+}
+
+.form {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px auto;
+}
+.form__input {
+  width: 100%;
+  padding: 10px;
+}
+.form label {
+  width: 100%;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  & span {
+    padding-bottom: 10px;
+  }
+}
