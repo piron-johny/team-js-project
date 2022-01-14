@@ -1,0 +1,48 @@
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f7f7f7;
+  padding: 29px 10px;
+}
+
+.footer__text {
+  font-family: inherit;
+  color: getColor(footer-text);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 2;
+  margin: 0;
+  padding: 0;
+  width: 242px;
+  text-align: center;
+  @include respond-to(mobile) {
+    width: 485px;
+    line-height: 1.2;
+    font-size: 15px;
+  }
+  @include respond-to(tablet) {
+    font-size: 16px;
+  }
+}
+
+.footer__link {
+  color: getColor(footer-text);
+  &:hover,
+  &:focus {
+    color: getColor(accent);
+    text-decoration: none;
+  }
+}
+
+.footer__icon {
+  margin: 0 10px;
+  fill: getColor(accent);
+
+  .footer__link:hover &,
+  .footer__link:focus & use {
+    fill: getColor(footer-text);
+  }
+}
