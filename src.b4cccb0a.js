@@ -80,4 +80,4 @@ var e,t=arguments[3];!function(t,r){"object"==typeof exports&&"object"==typeof m
 },{"../hbs/moviesRenderHBS.hbs":"LCBw","axios":"dZBD"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/pagination.js"),require("./js/movies"),require("./js/watched_queued_movies");
 },{"./sass/main.scss":"clu1","./js/pagination.js":"o8lo","./js/movies":"GsTD","./js/watched_queued_movies":"G0TZ"}]},{},["Focm"], null)
-//# sourceMappingURL=/team-js-project/src.0dcecb3f.js.map
+//# sourceMappingURL=/team-js-project/src.b4cccb0a.js.map
