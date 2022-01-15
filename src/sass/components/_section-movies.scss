@@ -1,0 +1,35 @@
+.section-movies {
+  padding: 20px 0 40px;
+  background: getColor('bg-page');
+
+  @media screen and (min-width: 768px) {
+    padding: 60px 0;
+  }
+
+  &__set {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    margin: -10px;
+
+    @media screen and (min-width: 768px) {
+      margin: -15px;
+    }
+  }
+
+  &__card {
+    height: 440px;
+    background-color: rgb(73, 44, 8);
+    margin: 10px;
+    flex-basis: calc(100% - 2 * 10px);
+
+    @media screen and (min-width: 768px) {
+      margin: 15px;
+      flex-basis: calc(100% / 2 - 2 * 15px);
+    }
+
+    @media screen and (min-width: 1024px) {
+      flex-basis: calc(100% / 3 - 2 * 15px);
+    }
+  }
+}
