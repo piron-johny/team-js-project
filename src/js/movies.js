@@ -45,4 +45,4 @@ getWatchedMovies()
 fetchMovies(550)
 
 
-buttonWatched.addEventListener('click', addWatchedMovies)
+// buttonWatched.addEventListener('click', addWatchedMovies)

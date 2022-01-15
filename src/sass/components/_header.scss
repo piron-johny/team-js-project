@@ -20,7 +20,6 @@
   height: 30px;
   width: 80px;
   margin-top: 40px;
-  background: transparent;
 
   font-family: Roboto;
   font-style: normal;
@@ -28,14 +27,17 @@
   font-size: 12px;
   line-height: 14px;
   color: getColor('header-text');
+
   border: none;
+  cursor: pointer;
+  background: transparent;
+  text-decoration: underline getColor('accent') 3px;
 }
 
 .button-library {
   height: 30px;
   width: 100px;
   margin-top: 40px;
-  background: transparent;
 
   font-family: Roboto;
   font-style: normal;
@@ -43,7 +45,10 @@
   font-size: 12px;
   line-height: 14px;
   color: getColor('header-text');
+
+  background: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .text-logo {
@@ -78,6 +83,32 @@ input {
   line-height: 16px;
   color: getColor('header-text');
 }
+
+.our-library {
+  display: flex;
+  justify-content: center;
+}
+
+.our-library__btn {
+  width: 135px;
+  height: 45px;
+  margin-bottom: 65px;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: getColor('header-text');
+
+  background: transparent;
+  border: 1px solid getColor('header-text');
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 // .box {
 //   width: auto;
 //   height: 230px;
