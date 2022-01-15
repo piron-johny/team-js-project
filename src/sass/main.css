@@ -1,0 +1,443 @@
+@charset "UTF-8";
+/*
+ * Главный файл стилей.
+ * Все паршалы подключаются сюда.
+ */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+body {
+  font-family: Roboto, sans-serif;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 480px) {
+  .container {
+    width: 480px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 885px;
+  }
+}
+
+.page-header {
+  height: 230px;
+  background-image: url(../images/header-home@2x.jpg);
+  background-size: cover;
+}
+
+.page-header__nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.page-header__logo {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  text-decoration: none;
+}
+
+.button-home {
+  height: 30px;
+  width: 80px;
+  margin-top: 40px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  -webkit-text-decoration: underline #ff6b08 3px;
+          text-decoration: underline #ff6b08 3px;
+}
+
+.button-library {
+  height: 30px;
+  width: 100px;
+  margin-top: 40px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #ffffff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.text-logo {
+  color: #ffffff;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 35px;
+}
+
+@media screen and (max-width: 480px) {
+  .text-logo {
+    display: none;
+  }
+}
+
+.search-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #fff;
+  min-width: 280px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #ffffff;
+}
+
+.our-library {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.our-library__btn {
+  width: 135px;
+  height: 45px;
+  margin-bottom: 65px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #ffffff;
+  background: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 99;
+  overflow-y: scroll;
+}
+
+.modal {
+  position: absolute;
+  width: 90%;
+  min-width: 280px;
+  min-height: 958px;
+  top: 70%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #ffffff;
+  z-index: 100;
+}
+
+.modal__btn--close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background-color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+.modal__btn--close:hover::after, .modal__btn--close:focus::after {
+  background-color: #ff6b01;
+  -webkit-transform: rotate(-225deg);
+          transform: rotate(-225deg);
+}
+
+.modal__btn--close:hover::before, .modal__btn--close:focus::before {
+  background-color: #ff6b01;
+  -webkit-transform: rotate(225deg);
+          transform: rotate(225deg);
+}
+
+.modal__btn--close::after, .modal__btn--close::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 8px;
+  height: 1px;
+  width: 13px;
+  background: #000000;
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: -webkit-transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal__btn--close::after {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.modal__btn--close::before {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.modal__card {
+  height: auto;
+  padding: 28px 0 30px 0;
+  border-radius: 5px;
+}
+
+.modal__card--photo {
+  margin-bottom: 30px;
+}
+
+.modal__card--name {
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.15;
+  text-align: left;
+}
+
+.modal__card--table {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.modal__card--item {
+  padding: 0;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  color: #8c8c8c;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-align: left;
+}
+
+.modal__card--data {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-align: left;
+  padding: 0;
+  padding-bottom: 10px;
+}
+
+.modal__card--data-vote {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.16;
+  text-align: left;
+  padding: 1px 9px 1px 10px;
+  color: #ffffff;
+  background-color: #ff6b01;
+  min-width: 36px;
+  height: 16px;
+  border-radius: 5px;
+}
+
+.modal__card--data-votes {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.16;
+  text-align: left;
+  padding: 1px 4px;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  height: 16px;
+  min-width: 36px;
+}
+
+.modal__card--about {
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.modal__card--about-text {
+  margin: 0;
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.67;
+  text-align: left;
+}
+
+.modal__btn--box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.btn .btn__active {
+  display: block;
+  margin: 0;
+  padding: 0;
+  min-width: 112.58px;
+  min-height: 44px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
+  padding: 14px 6.62px 12px 6.62px;
+  border-radius: 5px;
+}
+
+.btn:hover, .btn:focus {
+  background-color: #ff6b01;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+.btn__active {
+  background-color: #ff6b01;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  padding: 14px 6.62px 12px 6.62px;
+  border-radius: 5px;
+}
+
+.modal__btn--queue {
+  margin-left: 14.85px;
+}
+
+.footer {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #f7f7f7;
+  padding: 29px 10px;
+}
+
+.footer__text {
+  font-family: inherit;
+  color: #545454;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 2;
+  margin: 0;
+  padding: 0;
+  width: 242px;
+  text-align: center;
+}
+
+@media (min-width: 480px) {
+  .footer__text {
+    width: 485px;
+    line-height: 1.2;
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 768px) {
+  .footer__text {
+    font-size: 16px;
+  }
+}
+
+.footer__link {
+  color: #545454;
+}
+
+.footer__link:hover, .footer__link:focus {
+  color: #ff6b08;
+  text-decoration: none;
+}
+
+.footer__icon {
+  margin: 0 10px;
+  fill: #ff6b08;
+}
+
+.footer__link:hover .footer__icon,
+.footer__link:focus .footer__icon use {
+  fill: #545454;
+}
+/*# sourceMappingURL=main.css.map */
