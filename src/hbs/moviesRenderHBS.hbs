@@ -3,6 +3,8 @@
 <div class="movie-wrapper" value={{id}}>
 <img src="https://image.tmdb.org/t/p/w500/{{poster_path}}" alt="{{title}}">
 <p>{{genre_ids}}</p>
+<button type="button" class="button__watched" data-button="Watched">Add to Watched</button>
+<button type="button" class="button__queue" data-button="Queued">Add to Queued</button>
 </div>
 ;
 {{/each}}
