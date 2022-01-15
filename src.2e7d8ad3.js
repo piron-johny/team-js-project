@@ -77,4 +77,4 @@ const e=document.querySelector(".button-home"),t=document.querySelector(".button
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/movies"),require("./js/watched_queued_movies"),require("./js/header");
 },{"./sass/main.scss":"clu1","./js/movies":"GsTD","./js/watched_queued_movies":"G0TZ","./js/header":"cGsR"}]},{},["Focm"], null)
-//# sourceMappingURL=/team-js-project/src.57a702b6.js.map
+//# sourceMappingURL=/team-js-project/src.2e7d8ad3.js.map
