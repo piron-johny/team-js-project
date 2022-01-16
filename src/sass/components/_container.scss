@@ -1,16 +1,31 @@
 .container {
-  margin: 0 auto;
-  width: 280px;
+  @include respond-to(mobile) {
+    margin: 0 auto;
+    width: 280px;
+  }
 
-  // @media screen and (min-width: 480px) {
-  //   width: 440px;
-  // }
-
-  @media screen and (min-width: 768px) {
+  @include respond-to(tablet) {
     width: 618px;
   }
 
-  @media screen and (min-width: 1024px) {
+  @include respond-to(desktop) {
     width: 882px;
   }
 }
+
+// .container {
+//   margin: 0 auto;
+//   width: 280px;
+
+//   // @media screen and (min-width: 480px) {
+//   //   width: 440px;
+//   // }
+
+//   @media screen and (min-width: 768px) {
+//     width: 618px;
+//   }
+
+//   @media screen and (min-width: 1024px) {
+//     width: 882px;
+//   }
+// }
