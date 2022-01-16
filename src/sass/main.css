@@ -207,6 +207,9 @@ input {
 
 @media (min-width: 768px) {
   .modal {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
     margin: 237px 75px 225px 75px;
     padding: 40px 30px 40px 30px;
     min-height: 0;
@@ -269,14 +272,6 @@ input {
 .modal__btn--close::before {
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
-}
-
-@media (min-width: 768px) {
-  .modal__card {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-  }
 }
 
 .modal__card--img {
@@ -410,7 +405,7 @@ input {
   }
 }
 
-.btn .btn__active {
+.btn {
   display: block;
   margin: 0;
   padding: 0;
@@ -420,9 +415,6 @@ input {
   text-align: center;
   text-transform: uppercase;
   cursor: pointer;
-}
-
-.btn {
   width: 112.58px;
   height: 44px;
   background-color: #ffffff;
@@ -455,7 +447,6 @@ input {
   background-color: #ff6b01;
   color: #ffffff;
   border: 1px solid #ffffff;
-  border-radius: 5px;
 }
 
 .modal__btn--queue {
