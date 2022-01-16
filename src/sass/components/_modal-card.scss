@@ -173,12 +173,11 @@
   cursor: pointer; 
 }
 .btn {
-  min-width: 112.58px;
-  min-height: 44px;
+  width: 112.58px;
+  height: 44px;
   background-color: getColor('header-text');
   color: getColor('primary-text');
   border: 1px solid getColor('primary-text');
-  padding: 14px 6.62px 12px 6.62px;
   border-radius: 5px;
   &:hover,
   &:focus {
@@ -187,21 +186,18 @@
     border: 1px solid getColor('header-text');
   }
   @include respond-to(tablet){
-    min-width: 125px;
-    min-height: 44px;
-    padding: 14px 9px 12px 9px;
+    width: 125px;
+    height: 44px;
   }
   @include respond-to(desktop){
-    min-width: 136px;
-    min-height: 44px;
-    padding: 14px 10px 12px 10px;
+    width: 136px;
+    height: 44px;
   }
 }
 .btn__active {
   background-color: getColor('accent-modal');
   color: getColor('header-text');
   border: 1px solid getColor('header-text');
-  padding: 14px 6.62px 12px 6.62px;
   border-radius: 5px;
 }
 .modal__btn--queue {
