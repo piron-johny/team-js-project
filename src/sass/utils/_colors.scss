@@ -8,6 +8,8 @@ $colors: (
   'modal-text': #8c8c8c,
   'modal-rectangle': #f7f7f7,
   'accent-modal': #ff6b01,
+  'hover': #ec640a,
+  'focus': #ec640abb,
 );
 
 @function getColor($key) {
