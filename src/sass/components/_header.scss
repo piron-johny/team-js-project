@@ -60,53 +60,16 @@
   //   outline: none;
   //   box-shadow: 0 0 0 3px getColor('focus');
   // }
-
-  &:hover {
-    border-radius: 5px;
-    background-color: getColor('hover');
-  }
 }
 
 .icon-logo {
   margin-right: 10px;
 }
 
-.button-home {
-  height: 30px;
-  width: 80px;
-  margin-top: 40px;
-  margin-right: 10px;
-  padding: 0;
-
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 14px;
-  color: getColor('header-text');
-
-  border: none;
-  cursor: pointer;
-  background: transparent;
-  text-decoration: underline getColor('accent') 3px;
-  transition-property: all;
-  transition-duration: 200ms;
-  transition-timing-function: linear;
-
-  // &:focus {
-  //   outline: none;
-  //   box-shadow: 0 0 0 3px getColor('focus');
-  // }
-
-  &:hover {
-    border-radius: 5px;
-    background-color: getColor('hover');
-  }
-}
-
-.button-library {
+.button-nav {
   height: 30px;
   width: 90px;
+
   margin-top: 40px;
   padding: 0;
 
@@ -120,19 +83,21 @@
   background: transparent;
   border: none;
   cursor: pointer;
-
   transition-property: all;
   transition-duration: 200ms;
   transition-timing-function: linear;
 
-  // &:focus {
-  //   outline: none;
-  //   box-shadow: 0 0 0 3px getColor('focus');
-  // }
-
   &:hover {
-    border-radius: 5px;
-    background-color: getColor('hover');
+    color: getColor('accent');
+  }
+
+  &--current {
+    text-decoration: underline getColor('accent') 3px;
+  }
+
+  &--home {
+    width: 80px;
+    margin-right: 10px;
   }
 }
 
@@ -147,16 +112,33 @@
   @media screen and (max-width: 767px) {
     display: none;
   }
+
+  transition-property: color;
+  transition-duration: 200ms;
+  transition-timing-function: linear;
+
+  &:hover {
+    color: getColor('accent');
+  }
 }
 
 .search-form {
   display: flex;
+  height: 20px;
   justify-content: center;
   position: relative;
   max-width: 330px;
   margin-left: auto;
   margin-right: auto;
   border-bottom: 1px solid #fff;
+
+  transition-property: all;
+  transition-duration: 200ms;
+  transition-timing-function: linear;
+
+  &:hover {
+    border-bottom: 1px solid getColor('accent');
+  }
 }
 
 input {
@@ -172,11 +154,6 @@ input {
   font-size: 14px;
   line-height: 16px;
   color: getColor('header-text');
-
-  // &:hover {
-  //   outline: none;
-  //   box-shadow: 0 0 0 3px getColor('focus');
-  // }
 }
 
 .our-library {
@@ -214,6 +191,7 @@ input {
   // }
 
   &:hover {
+    border-color: getColor('accent');
     background-color: getColor('hover');
   }
 }
@@ -222,25 +200,16 @@ input {
   position: absolute;
   top: 0;
   right: 0;
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
   border: none;
   background-image: url(../images/search.svg);
   background-color: transparent;
-  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 
   transition-property: background-color;
   transition-duration: 200ms;
   transition-timing-function: linear;
-
-  &:hover {
-    border-radius: 3px;
-    background-color: getColor('hover');
-  }
-
-  // &:focus {
-  //   outline: none;
-  //   box-shadow: 0 0 0 3px getColor('focus');
-  // }
 }
