@@ -3,24 +3,26 @@
     <img
       src='https://image.tmdb.org/t/p/w300/{{poster_path}}'
       alt='Image of {{original_title}}'
-      class='poster-img'
+      class='movies-card__img'
     />
     {{#if title}}
-      <h3 class='title'>{{title}}</h3>
+      <h3 class='movies-card__title'>{{title}}</h3>
     {{else}}
-      <h3 class='title'>{{name}}</h3>
+      <h3 class='movies-card__title'>{{name}}</h3>
     {{/if}}
 
     {{#each genre_ids}}
-      <ul class='genres'>
-        <li class='genres__list'>{{this}}</li>
+      <ul class='movies-card__genres-list'>
+        <li class='movies-card__genres-item'>{{this}}</li>
       </ul>
     {{/each}}
 
+    <span class='delimiter'>|</span>
+
     {{#if release_date}}
-      <p class='date'>{{release_date}}</p>
+      <p class='movies-card__date'>{{release_date}}</p>
     {{else}}
-      <p class='date'>{{first_air_date}}</p>
+      <p class='movies-card__date'>{{first_air_date}}</p>
     {{/if}}
   </li>
 {{/each}}
