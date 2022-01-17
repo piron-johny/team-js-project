@@ -5,7 +5,9 @@ const cardOpenModal = document.querySelector(".section-movies__set");
 
 cardOpenModal.addEventListener('click', onModalOpen);
 btnCloseModal.addEventListener('click', onModalClose);
+
 backdropModalEl.addEventListener('click', onBackdropClick);
+
 window.addEventListener('keydown', onEscPress);
 
 function onModalOpen(e) {
