@@ -28,6 +28,6 @@ function onEscPress(e) {
     console.log(e);
     if (e.key === 'Escape') {
         onModalClose()
-        window.removeEventListener('keydown', onEscPress);
+        window.removeEventListener('keydown', onModalClose);
  }
 }
