@@ -1,7 +1,9 @@
 .container {
+  margin: 0 auto;
+  width: 280px;
+
   @include respond-to(mobile) {
-    margin: 0 auto;
-    width: 280px;
+    width: 420px;
   }
 
   @include respond-to(tablet) {
