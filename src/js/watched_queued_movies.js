@@ -65,7 +65,7 @@ function addToWatchedArray(e) {
           data.results.forEach(elem => {
               if(+e.srcElement.parentElement.attributes.value.value === elem.id){
               try {
-                    
+                    e.target.textContent = 'Remove from "Watched"'
                     const savedData = localStorage.getItem('Watched')
                     const parsedData = JSON.parse(savedData)
          
@@ -88,7 +88,7 @@ function addToQueuedArray(e) {
           data.results.forEach(elem => {
               if(+e.srcElement.parentElement.attributes.value.value === elem.id){
               try {
-                    
+                    e.target.textContent = 'Remove from "Queued"'
                     const savedData = localStorage.getItem('Queued')
                     const parsedData = JSON.parse(savedData)
          
