@@ -30,9 +30,7 @@ function createFirstHeader() {
 
     const searchForm = `<form action="" class="search-form">
                 <input type="text" name="search" placeholder="Поиск фильмов" autofocus>
-                <button type="submit" name="search-btn">
-                    <i class="fas fa-search"></i>
-                </button>
+                <button class="search-btn" type="submit" name="search-btn"></button>
             </form>`;
     
     changeBlock.innerHTML = searchForm;
