@@ -1,7 +1,8 @@
 const homeBtn = document.querySelector('.button-home');
 const libraryBtn = document.querySelector('.button-library');
 const form = document.querySelector('.search-form');
-const changeBlock = document.querySelector('.change-block')
+const changeBlock = document.querySelector('.change-block');
+const pageHeaderEl = document.querySelector('.page-header');
 
 libraryBtn.addEventListener('click', createSecondHeader);
 homeBtn.addEventListener('click', createFirstHeader);
@@ -17,6 +18,10 @@ function createSecondHeader() {
 
     changeBlock.innerHTML = ourLibrary;
 
+    pageHeaderEl.classList.remove("page-header");
+    pageHeaderEl.classList.add("page-header__current");
+
+
 }
 
 function createFirstHeader() {
@@ -31,5 +36,9 @@ function createFirstHeader() {
             </form>`;
     
     changeBlock.innerHTML = searchForm;
+
+    pageHeaderEl.classList.remove("page-header__current");
+    pageHeaderEl.classList.add("page-header");
+
 
 }
