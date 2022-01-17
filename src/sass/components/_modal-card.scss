@@ -6,30 +6,53 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 99;
+  
   width: 100%;
   height: 100%;
+
   background-color: rgba(0, 0, 0, 0.25);
-  z-index: 99;
-  overflow-y: scroll;
 }
 .modal {
   position: absolute;
   width: 90%;
+  margin: 20px;
   min-width: 280px;
   min-height: 958px;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 20px;
+  padding: 48px 20px 40px 20px;
   background-color: getColor('header-text');
   z-index: 100;
+  @include respond-to(mobile){
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    min-width: 0;
+    min-height: 0;
+    width: 280px;
+    height: 958px;
+    margin: 20px auto 0 auto;
+  }
+  @include respond-to(tablet){
+    display: flex;
+    margin: 237px 75px 225px 75px;
+    padding: 40px 30px 40px 30px;
+    min-height: 0;
+    width: 618px;
+    height: 562px;
+  }
+  @include respond-to(desktop){
+    margin: 100px 71px;
+    padding: 50px 30px 40px 30px;
+    width: 882px;
+    height: 568px;
+  }
 }
 .modal__btn--close {
   position: absolute;
   top: 10px;
   right: 10px;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   background-color: getColor('header-text');
   border: none;
   cursor: pointer;
@@ -48,11 +71,11 @@
   &::before {
     content: '';
     position: absolute;
-    top: 14px;
+    top: 10px;
     left: 8px;
 
     height: 1px;
-    width: 13px;
+    width: 20px;
     background: getColor('primary-text');
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -63,19 +86,29 @@
     transform: rotate(45deg);
   }
 }
-
-.modal__card {
-  height: auto;
-  padding: 28px 0 30px 0;
-  border-radius: 5px;
-}
-.modal__card--photo {
+.modal__card--img {
   margin-bottom: 30px;
+  border-radius: 5px;
+  @include respond-to(tablet){
+    margin-bottom: 0;
+    width: 264px;
+    height: 373.55px;
+    margin-right: 32px;
+  }
+  @include respond-to(desktop){
+    width: 396px;
+    height: 477.8px;
+    margin-right: 30px;
+  }
 }
+
 .modal__card--name {
   margin-bottom: 20px;
   text-transform: uppercase;
   @include text(500, 20px, 1.15, left);
+  @include respond-to(desktop){
+    @include text(500, 30px, 1.16, left);
+  }
 }
 .modal__card--table {
   margin-bottom: 10px;
@@ -87,6 +120,9 @@
   padding-right: 20px;
   color: getColor('modal-text');
   @include text;
+  @include respond-to(desktop){
+    padding-right: 77px;
+  }
 }
 .modal__card--data {
   @include text;
@@ -123,22 +159,23 @@
 .modal__btn--box {
   display: flex;
   justify-content: center;
+  @include respond-to(desktop){
+    justify-content: flex-start;
+  }
 }
-.btn .btn__active {
+.btn {
   display: block;
   margin: 0;
   padding: 0;
-  min-width: 112.58px;
-  min-height: 44px;
   @include text(500, 12px, 1.33, center);
   text-transform: uppercase;
-  cursor: pointer;
-}
-.btn {
+  cursor: pointer; 
+
+  width: 112.58px;
+  height: 44px;
   background-color: getColor('header-text');
   color: getColor('primary-text');
   border: 1px solid getColor('primary-text');
-  padding: 14px 6.62px 12px 6.62px;
   border-radius: 5px;
   &:hover,
   &:focus {
@@ -146,14 +183,20 @@
     color: getColor('header-text');
     border: 1px solid getColor('header-text');
   }
+  @include respond-to(tablet){
+    width: 125px;
+    height: 44px;
+  }
+  @include respond-to(desktop){
+    width: 136px;
+    height: 44px;
+  }
 }
 .btn__active {
   background-color: getColor('accent-modal');
   color: getColor('header-text');
   border: 1px solid getColor('header-text');
-  padding: 14px 6.62px 12px 6.62px;
-  border-radius: 5px;
 }
 .modal__btn--queue {
-  margin-left: 14.85px;
+  margin-left: 15px;
 }
