@@ -14,7 +14,7 @@ function onModalOpen(e) {
     }   
 }
 
-function onModalClose() {
+export default function onModalClose() {
     backdropModalEl.classList.add("is-hidden")
 }
 
