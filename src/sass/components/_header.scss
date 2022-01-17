@@ -51,6 +51,20 @@
   margin-top: 40px;
   margin-bottom: 40px;
   text-decoration: none;
+
+  transition-property: all;
+  transition-duration: 200ms;
+  transition-timing-function: linear;
+
+  // &:focus {
+  //   outline: none;
+  //   box-shadow: 0 0 0 3px getColor('focus');
+  // }
+
+  &:hover {
+    border-radius: 5px;
+    background-color: getColor('hover');
+  }
 }
 
 .icon-logo {
@@ -61,6 +75,7 @@
   height: 30px;
   width: 80px;
   margin-top: 40px;
+  margin-right: 10px;
   padding: 0;
 
   font-family: Roboto;
@@ -74,11 +89,24 @@
   cursor: pointer;
   background: transparent;
   text-decoration: underline getColor('accent') 3px;
+  transition-property: all;
+  transition-duration: 200ms;
+  transition-timing-function: linear;
+
+  // &:focus {
+  //   outline: none;
+  //   box-shadow: 0 0 0 3px getColor('focus');
+  // }
+
+  &:hover {
+    border-radius: 5px;
+    background-color: getColor('hover');
+  }
 }
 
 .button-library {
   height: 30px;
-  width: 100px;
+  width: 90px;
   margin-top: 40px;
   padding: 0;
 
@@ -92,6 +120,20 @@
   background: transparent;
   border: none;
   cursor: pointer;
+
+  transition-property: all;
+  transition-duration: 200ms;
+  transition-timing-function: linear;
+
+  // &:focus {
+  //   outline: none;
+  //   box-shadow: 0 0 0 3px getColor('focus');
+  // }
+
+  &:hover {
+    border-radius: 5px;
+    background-color: getColor('hover');
+  }
 }
 
 .text-logo {
@@ -110,14 +152,19 @@
 .search-form {
   display: flex;
   justify-content: center;
+  position: relative;
+  max-width: 330px;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid #fff;
 }
 
 input {
   background: transparent;
   border: none;
-  border-bottom: 1px solid #fff;
+  text-align: left;
 
-  min-width: 280px;
+  width: 100%;
 
   font-family: Roboto;
   font-style: normal;
@@ -125,6 +172,11 @@ input {
   font-size: 14px;
   line-height: 16px;
   color: getColor('header-text');
+
+  // &:hover {
+  //   outline: none;
+  //   box-shadow: 0 0 0 3px getColor('focus');
+  // }
 }
 
 .our-library {
@@ -150,16 +202,45 @@ input {
   border: 1px solid getColor('header-text');
   border-radius: 5px;
   cursor: pointer;
+
+  transition-property: all;
+  transition-duration: 200ms;
+  transition-timing-function: linear;
+
+  // &:focus {
+  //   outline: none;
+  //   box-shadow: 0 0 0 3px getColor('focus');
+  //   border-color: getColor('accent');
+  // }
+
+  &:hover {
+    background-color: getColor('hover');
+  }
 }
 
-// .box {
-//   width: auto;
-//   height: 230px;
-//   background-image: url('../images/header-home.jpg');
-//   background-size: cover;
-// }
-// @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
-//   .box {
-//     background-image: url('../images/header-home@2x.jpg');
-//   }
-// }
+.search-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  border: none;
+  background-image: url(../images/search.svg);
+  background-color: transparent;
+  background-size: contain;
+
+  transition-property: background-color;
+  transition-duration: 200ms;
+  transition-timing-function: linear;
+
+  &:hover {
+    border-radius: 3px;
+    background-color: getColor('hover');
+  }
+
+  // &:focus {
+  //   outline: none;
+  //   box-shadow: 0 0 0 3px getColor('focus');
+  // }
+}
