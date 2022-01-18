@@ -27,7 +27,7 @@ function findMovie() {
  async function getWatchedMovies() {
 const userData = await axios.get('https://team-project-1da18-default-rtdb.europe-west1.firebasedatabase.app/users/-MtEL9CdKQsDhNmhkgGo.json');
      
-     console.log(userData.data.watched)
+  
      return userData.data.watched;
 }
 getWatchedMovies()
