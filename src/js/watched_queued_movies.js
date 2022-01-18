@@ -1,4 +1,5 @@
 import moviesRender from '../hbs/moviesRenderHBS.hbs';
+import onModalClose from './modalOpenClose';
 const axios = require('axios');
 
 const dataDiv = document.querySelector('.movie_data')
@@ -64,14 +65,21 @@ function addToWatchedArray(e) {
       fetchMovies(550).then(data => {
           data.results.forEach(elem => {
               if(+e.srcElement.parentElement.attributes.value.value === elem.id){
-              try {
-                    
-                    const savedData = localStorage.getItem('Watched')
-                    const parsedData = JSON.parse(savedData)
-         
+                  try {
+                       if (e.target.textContent === 'Remove from "Watched"') {
+                           removeFromArray('Watched')
+                           onModalClose
+                           return
+                   }
+                   const savedData = localStorage.getItem('Watched')
+                      const parsedData = JSON.parse(savedData)
+                      
+                      e.target.textContent = 'Remove from "Watched"'
+                               
                     parsedData.push(elem)
-                    localStorage.setItem('Watched', JSON.stringify(parsedData))
-                    
+                  localStorage.setItem('Watched', JSON.stringify(parsedData))
+                     
+                  
                     
                 } catch (error) {
                     console.log(error)
@@ -87,11 +95,16 @@ function addToQueuedArray(e) {
       fetchMovies(550).then(data => {
           data.results.forEach(elem => {
               if(+e.srcElement.parentElement.attributes.value.value === elem.id){
-              try {
+                  try {
+                  if (e.target.textContent === 'Remove from "Queued"') {
+                           removeFromArray('Queued')
+                           onModalClose
+                           return
+                   }
                     
                     const savedData = localStorage.getItem('Queued')
                     const parsedData = JSON.parse(savedData)
-         
+                    e.target.textContent = 'Remove from "Queued"'
                     parsedData.push(elem)
                     localStorage.setItem('Queued', JSON.stringify(parsedData))
                     
@@ -104,6 +117,14 @@ function addToQueuedArray(e) {
         })
     
     })
+}
+
+function removeFromArray(string) {
+    const savedData = localStorage.getItem(string)
+                    const parsedData = JSON.parse(savedData)
+         console.log(parsedData)
+                    parsedData.pop(parsedData)
+                    localStorage.setItem(string, JSON.stringify(parsedData))
 }
 
 
