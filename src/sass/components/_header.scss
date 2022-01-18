@@ -19,7 +19,7 @@
   }
 }
 
-.page-header__current {
+.page-header__library {
   max-width: 100%;
   height: 230px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
@@ -38,6 +38,8 @@
       -webkit-image-set(url(../images/header-library-desk@2x-min.jpg) 2x, url(../images/header-library-desk-min.jpg)
             1x);
   }
+
+  background-position: bottom;
 }
 
 .page-header__nav {
@@ -147,6 +149,7 @@ input {
   text-align: left;
 
   width: 100%;
+  outline: none;
 
   font-family: Roboto;
   font-style: normal;
@@ -212,4 +215,18 @@ input {
   transition-property: background-color;
   transition-duration: 200ms;
   transition-timing-function: linear;
+}
+
+.change-block__notification {
+  display: none;
+  text-align: center;
+  margin-top: 25px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: getColor('notification-text');
 }
