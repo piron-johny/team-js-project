@@ -9,5 +9,16 @@ import './js/creadCard';
 import './js/modalOpenClose';
 import './js/searchMovies';
 
+// якщо розкоментувати initialData, то потрібно
+// закоментувати trendingMovies і розкоментувати constants
+
+// import './js/initialData';
+
+// якщо розкоментувати constants, то потрібно
+// закоментувати trendingMovies і розкоментувати initialData
+
+// import './js/constants';
+
+
 // DATA_URL = 'https://team-project-1da18-default-rtdb.europe-west1.firebasedatabase.app/user.json';  // Путь к данным пользователя в базе данных
 // const KEY = '2cf91cf1fed5026ae9524dc97ad33068';  // Ключ доступа к API фильмов
