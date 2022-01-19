@@ -100,4 +100,4 @@ var t,o=arguments[3];!function(o,i){"function"==typeof t&&t.amd?t([],function(){
 },{"../hbs/render.hbs":"GUIr","notiflix/build/notiflix-notify-aio":"MeeU","axios":"dZBD","./creadCard":"gxuC"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/pagination.js"),require("./js/movies"),require("./js/watched_queued_movies"),require("./js/header"),require("./js/trendingMovies"),require("./js/creadCard"),require("./js/modalOpenClose"),require("./js/searchMovies");
 },{"./sass/main.scss":"clu1","./js/pagination.js":"o8lo","./js/movies":"GsTD","./js/watched_queued_movies":"G0TZ","./js/header":"cGsR","./js/trendingMovies":"DBlO","./js/creadCard":"gxuC","./js/modalOpenClose":"oBvs","./js/searchMovies":"KyDk"}]},{},["Focm"], null)
-//# sourceMappingURL=/team-js-project/src.9c241201.js.map
+//# sourceMappingURL=/team-js-project/src.703b96b4.js.map
