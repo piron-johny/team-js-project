@@ -7,9 +7,7 @@ const axios = require('axios');
 const dataDiv = document.querySelector('.movie_data')
 
 
-const Watched = [];
 
-const Queued = [];
 
 async function fetchMovies() {
    const response = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=3c97a1babd597f31c1fa5b3567357dfb`)
@@ -29,11 +27,12 @@ async function fetchMovies() {
 function addArrayToLocalStorage(array) {
     localStorage.setItem('Watched', JSON.stringify(array))
     localStorage.setItem('Queued', JSON.stringify(array))
+    
 }
 fetchMovies(550)
 
-addArrayToLocalStorage([])
 
+addArrayToLocalStorage([])
 // function addMovieToWatched(e) {
 //     e.preventDefault();
 //     console.log(e)
@@ -62,27 +61,48 @@ addArrayToLocalStorage([])
     
      
 // }
-
+console.log(cardOpenModal)
    
 async function defineMovie(e) {
         e.preventDefault()
     //  console.log(+e.target.parentElement.id)
     const data = await API.trendingMovies();
-     
-    data.results.forEach(el => {
-        const savedData = localStorage.getItem('Watched')
+     const savedData = localStorage.getItem('Watched')
         const parsedData = JSON.parse(savedData)
-        console.log(el)
+    data.results.forEach(el => {
+ 
         //     parsedData.push(el)
+        for (let el of data.results) {
+    if (parsedData.filter(elem => elem.id === +e.target.parentElement.id).length === 0) {
+        parsedData.push(el)
+        localStorage.setItem('Watched', JSON.stringify(parsedData))
+      break
+    }
+  }
+
+        // if (parsedData.includes(el.id)) {
+        //     console.log(parsedData.includes(el.id))
+        //     // parsedData.splice(neededEl, 1)
+        //     console.log("Содержит")
+        // }
         
-                if (!parsedData.includes(el) && +e.target.parentElement.id === el.id) {
-                   parsedData.push(el)
-                    
-        } 
+     
+    //    if (+e.target.parentElement.id === el.id) {
+    //             // parsedData.splice(neededEl, 1)
+    //        return
+    //       console.log(+e.target.parentElement.id === elem.id)
+    //         } 
+    //    } )
+        //     console.log(elem)
+        //     
+        //     
+
+        // })
+        
         
     
            
-            localStorage.setItem('Watched', JSON.stringify(parsedData))
+          
             // e.target.textContent = 'Remove from "Watched"'
         // +e.target.parentElement.id !== i.id
         
@@ -90,6 +110,7 @@ async function defineMovie(e) {
       
        
     })
+      
     }
    
 cardOpenModal.addEventListener("click", defineMovie) 
@@ -180,7 +201,6 @@ function getButtonQueued() {
 //     console.log(movieWrapper)
 //     movieWrapper.forEach(elem => elem.addEventListener('click', addMovieToWatched))
 // }
-
 
 
 
