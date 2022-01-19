@@ -91,4 +91,4 @@ var t,o=arguments[3];!function(o,i){"function"==typeof t&&t.amd?t([],function(){
 },{"../hbs/render.hbs":"GUIr","notiflix/build/notiflix-notify-aio":"MeeU","axios":"dZBD"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/movies"),require("./js/watched_queued_movies"),require("./js/header"),require("./js/trendingMovies"),require("./js/creadCard"),require("./js/modalOpenClose"),require("./js/seachMovies");
 },{"./sass/main.scss":"clu1","./js/movies":"GsTD","./js/watched_queued_movies":"G0TZ","./js/header":"cGsR","./js/trendingMovies":"DBlO","./js/creadCard":"gxuC","./js/modalOpenClose":"oBvs","./js/seachMovies":"Kflg"}]},{},["Focm"], null)
-//# sourceMappingURL=/team-js-project/src.7b019d9c.js.map
+//# sourceMappingURL=/team-js-project/src.48a25939.js.map
