@@ -53,6 +53,7 @@
   margin-top: 40px;
   margin-bottom: 40px;
   text-decoration: none;
+  color: getColor('header-text');
 
   transition-property: all;
   transition-duration: 200ms;
@@ -62,11 +63,15 @@
   //   outline: none;
   //   box-shadow: 0 0 0 3px getColor('focus');
   // }
+
+  &:hover {
+    color: getColor('accent');
+  }
 }
 
-.icon-logo {
-  margin-right: 10px;
-}
+// .page-header__logo svg:hover path {
+//   stroke: getColor('accent');
+// }
 
 .button-nav {
   height: 30px;
@@ -85,42 +90,64 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  transition-property: all;
-  transition-duration: 200ms;
-  transition-timing-function: linear;
+  transition: all 0.25s linear;
+  // transition-duration: 200ms;
+  // transition-timing-function: linear;
+  position: relative;
 
   &:hover {
     color: getColor('accent');
   }
 
+  &:hover:before {
+    transform: scaleX(1);
+    transition: transform 0.25s;
+    transform-origin: left;
+  }
+
+  &::before {
+    content: '';
+    width: 70px;
+    height: 2px;
+    background-color: getColor('accent');
+    position: absolute;
+    left: 10px;
+    bottom: 5px;
+    transform: scaleX(0);
+    transition: transform 0.25s;
+
+    transform-origin: right;
+  }
+
   &--current {
-    text-decoration: underline getColor('accent') 3px;
+    &::before {
+      content: '';
+      transform: scaleX(1);
+    }
   }
 
   &--home {
     width: 80px;
     margin-right: 10px;
+
+    &::before {
+      content: '';
+      width: 40px;
+      left: 20px;
+    }
   }
 }
 
 .text-logo {
-  color: getColor('header-text');
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   font-size: 30px;
   line-height: 35px;
+  margin-left: 10px;
 
   @media screen and (max-width: 767px) {
     display: none;
-  }
-
-  transition-property: color;
-  transition-duration: 200ms;
-  transition-timing-function: linear;
-
-  &:hover {
-    color: getColor('accent');
   }
 }
 
@@ -135,11 +162,27 @@
   border-bottom: 1px solid #fff;
 
   transition-property: all;
-  transition-duration: 200ms;
+  transition-duration: 300ms;
   transition-timing-function: linear;
 
-  &:hover {
-    border-bottom: 1px solid getColor('accent');
+  &:hover:before {
+    transform: scaleX(1);
+    transition: transform 0.25s;
+    transform-origin: left;
+  }
+
+  &::before {
+    content: '';
+    width: 100%;
+    height: 1.5px;
+    background-color: getColor('accent');
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+
+    transform-origin: right;
   }
 }
 
@@ -211,10 +254,6 @@ input {
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
-
-  transition-property: background-color;
-  transition-duration: 200ms;
-  transition-timing-function: linear;
 }
 
 .change-block__notification {
