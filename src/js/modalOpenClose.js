@@ -28,7 +28,7 @@ function onBackdropClick(e){
 }
 
 function onEscPress(e) {
-    console.log(e);
+    // console.log(e);
     if (e.key === 'Escape') {
         onModalClose()
         window.removeEventListener('keydown', onEscPress);
