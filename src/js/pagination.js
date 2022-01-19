@@ -1,22 +1,24 @@
-// 1. Пагинация с помощью плагина tui-pagination https://www.npmjs.com/package/tui-pagination
-
-// Вставить в index.html >
-//<link rel="stylesheet" href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css"/>
-//<script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
-//<div id="tui-pagination-container" class="tui-pagination"></div>
-
+// // 1. Пагинация с помощью плагина tui-pagination https://www.npmjs.com/package/tui-pagination
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 
+import moviesRender from '../hbs/render.hbs';
+import FetchServise from './servisesAPI.js';
+const fetchServise = new FetchServise();
+
+const paginationEl = document.getElementById('pagination');
+const galleryEl = document.querySelector('.section-movies__set');
+// console.log(galleryEl);
+
 const options = {
-  // below default value of options
   totalItems: 400,
   itemsPerPage: 20,
   visiblePages: 5,
   page: 1,
-  centerAlign: false,
+  centerAlign: true,
   firstItemClassName: 'tui-first-child',
   lastItemClassName: 'tui-last-child',
+  usageStatistics: false,
   template: {
     page: '<a href="#" class="tui-page-btn">{{page}}</a>',
     currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
@@ -33,11 +35,18 @@ const options = {
       '<span class="tui-ico-ellip">...</span>' +
       '</a>',
   },
-  usageStatistics: false,
 };
-const pagination = new Pagination('pagination', options);
+const pagination = new Pagination(paginationEl, options);
+pagination.getCurrentPage();
 
-const container = document.getElementById('tui-pagination-container');
-const instance = new Pagination(container, options);
-
-instance.getCurrentPage();
+pagination.on('afterMove', eData => {
+  const currentPage = eData.page;
+  // console.log(currentPage);
+  return fetchServise.movies(currentPage).then(data => {
+    galleryEl.innerHTML = '';
+    galleryEl.insertAdjacentHTML('afterbegin', moviesRender(data.data.results));
+    // moviesRender(data);
+    // console.log(data.data.results);
+    return;
+  });
+});

@@ -1,20 +1,23 @@
 const btnCloseModal = document.querySelector("[data-modal-close]");
 const backdropModalEl = document.querySelector("[data-backdrop]");
-const cardOpenModal = document.querySelector(".section-movies__set");
+export const cardOpenModal = document.querySelector(".section-movies__set");
 
 
 cardOpenModal.addEventListener('click', onModalOpen);
 btnCloseModal.addEventListener('click', onModalClose);
+
 backdropModalEl.addEventListener('click', onBackdropClick);
+
 window.addEventListener('keydown', onEscPress);
 
 function onModalOpen(e) {
+    
     if (e.target.nodeName !== `LI`) {
         backdropModalEl.classList.remove("is-hidden")
     }   
 }
 
-function onModalClose() {
+export default function onModalClose() {
     backdropModalEl.classList.add("is-hidden")
 }
 
