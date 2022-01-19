@@ -15,8 +15,8 @@ async function fetchMovies(name, page=1) {
                   
       const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=2cf91cf1fed5026ae9524dc97ad33068&query=${name}&language=en-US&page=${page}&include_adult=false`);
     
-    localStorage.setItem('Search', JSON.stringify(searchGenresName(response.data)));
-    renderMoviesSet(JSON.parse(localStorage.getItem('Search')).results)
+    localStorage.setItem('Trending', JSON.stringify(searchGenresName(response.data)));
+    renderMoviesSet(JSON.parse(localStorage.getItem('Trending')).results)
   
   
   if (response.data.results.length === 0) {
@@ -33,7 +33,7 @@ function renderMoviesSet(array) {
 
 function searchMovies(e) {
     e.preventDefault();
-    localStorage.removeItem("Search");
+    localStorage.removeItem("Trending");
 
     const movies = input.value.trim().toLowerCase();
     console.log(movies)
