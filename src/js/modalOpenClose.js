@@ -11,7 +11,7 @@ backdropModalEl.addEventListener('click', onBackdropClick);
 window.addEventListener('keydown', onEscPress);
 
 function onModalOpen(e) {
-    console.log(e)
+    console.dir(e.target.firstElementChild);
     if (e.target.nodeName !== `LI`) {
         backdropModalEl.classList.remove("is-hidden")
         const savedFilms = JSON.parse(localStorage.getItem(`Trending`));
@@ -22,6 +22,7 @@ function onModalOpen(e) {
 
 function onModalClose() {
     backdropModalEl.classList.add("is-hidden")
+    modalEl.innerHTML = ''
 }
 
 function onBackdropClick(e){
