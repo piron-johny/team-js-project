@@ -1,24 +1,15 @@
 import './sass/main.scss';
 // import './js/form-login';
-import './js/pagination.js';
+// import './js/pagination.js';
 import './js/movies';
 import './js/watched_queued_movies';
 import './js/header';
 import './js/switch_Home&Library';
-import './js/trendingMovies';
+// import './js/trendingMovies';
 import './js/creadCard';
 import './js/modalOpenClose';
 import './js/searchMovies';
-
-// якщо розкоментувати initialData, то потрібно
-// закоментувати trendingMovies і розкоментувати constants
-
-// import './js/initialData';
-
-// якщо розкоментувати constants, то потрібно
-// закоментувати trendingMovies і розкоментувати initialData
-
-// import './js/constants';
+import './js/initialData';
 
 
 // DATA_URL = 'https://team-project-1da18-default-rtdb.europe-west1.firebasedatabase.app/user.json';  // Путь к данным пользователя в базе данных

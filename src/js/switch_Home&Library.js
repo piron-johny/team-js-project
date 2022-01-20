@@ -1,4 +1,5 @@
 import moviesRender from '../hbs/render.hbs';
+import { initialData } from './initialData';
 
 const logo = document.querySelector('.page-header__logo');
 const btnHome = document.querySelector('#home');
@@ -8,13 +9,11 @@ const moviesSet = document.querySelector('.section-movies__set');
 
 const renderMyLibarary = event => {
     event.preventDefault();
-    const libaryMarkup = moviesRender(JSON.parse(localStorage.getItem('Watched')));
-    moviesSet.innerHTML = libaryMarkup;
+    moviesSet.innerHTML = moviesRender(initialData.moviesArrayWatched);
 }
 const renderHome = event => {
     event.preventDefault();
-    const libaryMarkup = moviesRender(JSON.parse(localStorage.getItem('Trending')));
-    moviesSet.innerHTML = libaryMarkup;
+    initialData.trendingMovies();
 }
 
 logo.addEventListener('click', renderHome);
