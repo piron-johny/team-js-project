@@ -1,11 +1,10 @@
 import modalRender from '../hbs/modalRender.hbs';
 
-const body = document.querySelector("body");
-const btnCloseModal = document.querySelector("[data-modal-close]");
-const backdropModalEl = document.querySelector("[data-backdrop]");
-const cardOpenModal = document.querySelector(".section-movies__set");
+const body = document.querySelector('body');
+const btnCloseModal = document.querySelector('[data-modal-close]');
+const backdropModalEl = document.querySelector('[data-backdrop]');
+const cardOpenModal = document.querySelector('.section-movies__set');
 const modalEl = document.querySelector('.modal__card');
-
 
 cardOpenModal.addEventListener('click', onModalOpen);
 btnCloseModal.addEventListener('click', onModalClose);
@@ -23,11 +22,7 @@ function onModalOpen(e) {
         const findId = e.target.parentNode.id
         const savedFilms = JSON.parse(localStorage.getItem(`Trending`));
         const modalFilm = savedFilms.find(film => film.id === +findId)
-      
-          
-            
-        
-        
+
         modalEl.insertAdjacentHTML('beforeend', modalRender(modalFilm));
 
         const btnWatched = document.querySelector('[data-modal-watched]')
@@ -51,12 +46,7 @@ const btnQueued = document.querySelector('[data-modal-queue]')
             }
     
             } 
-                   
-          
-         
-            
-       
-        
+
         })
         btnQueued.addEventListener("click", () => {
             const savedData = localStorage.getItem('Queued')
@@ -81,30 +71,35 @@ const btnQueued = document.querySelector('[data-modal-queue]')
         })
     }
 }
-    
 
+export default function onModalClose() {
+  backdropModalEl.classList.add('is-hidden');
+  body.style.overflow = 'visible';
 
-
-
-
-
-
-function onModalClose() {
-    backdropModalEl.classList.add("is-hidden")
-    modalEl.innerHTML = ''
+  modalEl.style.height = null;
+  document.querySelector('.modal').style.padding = null;
+  modalEl.innerHTML = '';
 }
 
-function onBackdropClick(e){
-    if (e.currentTarget === e.target) {
-        onModalClose()
-    }
+function onBackdropClick(e) {
+  if (e.currentTarget === e.target) {
+    body.style.overflow = 'visible';
+
+    modalEl.style.height = null;
+    document.querySelector('.modal').style.padding = null;
+    onModalClose();
+  }
 }
 
 function onEscPress(e) {
-    if (e.key === 'Escape') {
-        onModalClose()
-        window.removeEventListener('keydown', onModalClose);
- }
+  if (e.key === 'Escape') {
+    onModalClose();
+    body.style.overflow = 'visible';
+
+    modalEl.style.height = null;
+    document.querySelector('.modal').style.padding = null;
+    window.removeEventListener('keydown', onModalClose);
+  }
 }
   export default { onModalOpen };
 export { cardOpenModal }

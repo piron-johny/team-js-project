@@ -30,6 +30,7 @@
 
 .footer__link {
   color: getColor(footer-text);
+  transition: color 0.25s linear;
   &:hover,
   &:focus {
     color: getColor(accent);
