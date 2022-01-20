@@ -16,19 +16,80 @@ window.addEventListener('keydown', onEscPress);
 
 function onModalOpen(e) {
 
-      if (e.target.parentElement.className === 'section-movies__card' || e.target.parentElement.className === 'movies-card__genres-list')  {
-          backdropModalEl.classList.remove("is-hidden")
-          body.style.overflow = 'hidden'
+    if (e.target.parentElement.className === 'section-movies__card' || e.target.parentElement.className === 'movies-card__genres-list') {
+        backdropModalEl.classList.remove("is-hidden")
+        body.style.overflow = 'hidden'
           
-          const findId = e.target.parentNode.id
-          const savedFilms = JSON.parse(localStorage.getItem(`Trending`));
-          const modalFilm = savedFilms.find(film => film.id === +findId)
-
+        const findId = e.target.parentNode.id
+        const savedFilms = JSON.parse(localStorage.getItem(`Trending`));
+        const modalFilm = savedFilms.find(film => film.id === +findId)
+      
+          
+            
+        
+        
         modalEl.insertAdjacentHTML('beforeend', modalRender(modalFilm));
-    }     
-}
 
-export default function onModalClose() {
+        const btnWatched = document.querySelector('[data-modal-watched]')
+const btnQueued = document.querySelector('[data-modal-queue]')
+        btnWatched.addEventListener("click", () => {
+            const savedData = localStorage.getItem('Watched')
+            const parsedData = JSON.parse(savedData)
+       
+            if (parsedData.length === 0) {
+                parsedData.push(modalFilm)
+                btnWatched.textContent = 'Remove from "Watched"'
+                localStorage.setItem('Watched', JSON.stringify(parsedData))
+                savedData;
+                parsedData;
+            if (btnWatched.textContent === 'Remove from "Watched"') {
+                btnWatched.addEventListener("click", () => {
+                    parsedData.splice(0, 1)
+                    localStorage.setItem('Watched', JSON.stringify(parsedData))
+                    onModalClose()
+                })
+            }
+    
+            } 
+                   
+          
+         
+            
+       
+        
+        })
+        btnQueued.addEventListener("click", () => {
+            const savedData = localStorage.getItem('Queued')
+            const parsedData = JSON.parse(savedData)
+       
+           if (parsedData.length === 0) {
+                parsedData.push(modalFilm)
+                btnQueued.textContent = 'Remove from "Queued"'
+                localStorage.setItem('Queued', JSON.stringify(parsedData))
+                savedData;
+                parsedData;
+            if (btnQueued.textContent === 'Remove from "Queued"') {
+                btnQueued.addEventListener("click", () => {
+                    parsedData.splice(0, 1)
+                    localStorage.setItem('Queued', JSON.stringify(parsedData))
+                    onModalClose()
+                })
+            }
+    
+            }
+        
+        })
+    }
+}
+    
+
+
+
+
+
+
+
+function onModalClose() {
     backdropModalEl.classList.add("is-hidden")
     modalEl.innerHTML = ''
 }
@@ -45,5 +106,6 @@ function onEscPress(e) {
         window.removeEventListener('keydown', onModalClose);
  }
 }
-
+  export default { onModalOpen };
 export { cardOpenModal }
+
