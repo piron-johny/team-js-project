@@ -59,6 +59,7 @@
   background-color: getColor('header-text');
   border: none;
   cursor: pointer;
+  z-index: 20;
 
   &:hover::after,
   &:focus::after {
