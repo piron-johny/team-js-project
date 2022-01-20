@@ -42,6 +42,30 @@ export const initialData = {
             })
             .catch()
     },
+
+    namingGenres(array) {
+        array.map(movie => {
+            const namedGenresArray = [];
+            const namedGenresArrayForCard = [];
+            movie.genre_ids.map(id => {
+                this.genresArray.map(idArray => {
+                    if (id === idArray.id) {
+                        id = idArray.name;
+                        namedGenresArray.push(id);
+                        namedGenresArrayForCard.push(id);
+                    };
+                })
+            });
+            if (namedGenresArrayForCard.length > 3) {
+                namedGenresArrayForCard.length = 3;
+                namedGenresArrayForCard[2] = 'Others'
+            };
+
+            movie.genres = namedGenresArray;
+            movie.genresForCard = namedGenresArrayForCard;
+            return;
+        });
+    },
     
     async trendingMovies({ key, page } = this) {
         // console.log('Before Fetch - currentFetch is trendingMovies:', this.currentFetch === this.trendingMovies);  // перевірка
@@ -59,6 +83,8 @@ export const initialData = {
                 this.totalPages = moviesData.total_pages;
                 this.totalResults = moviesData.total_results;
                 this.moviesArrayCurrent = moviesData.results;
+                this.namingGenres(this.moviesArrayCurrent);
+                addDataToLocalStorage('Trending', this.moviesArrayCurrent);
                 this.pagination();
                 // console.log('currentPage(response.data.page):', moviesData.page);    // перевірка на поточну сторінку
                 MOVIES_SET.innerHTML = moviesRender(this.moviesArrayCurrent);
@@ -84,6 +110,7 @@ export const initialData = {
                 this.totalPages = moviesData.total_pages;
                 this.totalResults = moviesData.total_results;
                 this.moviesArrayCurrent = moviesData.results;
+                this.namingGenres(this.moviesArrayCurrent);
                 this.pagination();
                 // console.log('currentPage(response.data.page):', moviesData.page);    // перевірка на поточну сторінку
                 MOVIES_SET.innerHTML = moviesRender(this.moviesArrayCurrent);
