@@ -32,12 +32,18 @@ function onModalOpen(e) {
 export default function onModalClose() {
   backdropModalEl.classList.add('is-hidden');
   body.style.overflow = 'visible';
+
+  modalEl.style.height = null;
+  document.querySelector('.modal').style.padding = null;
   modalEl.innerHTML = '';
 }
 
 function onBackdropClick(e) {
   if (e.currentTarget === e.target) {
     body.style.overflow = 'visible';
+
+    modalEl.style.height = null;
+    document.querySelector('.modal').style.padding = null;
     onModalClose();
   }
 }
@@ -46,6 +52,9 @@ function onEscPress(e) {
   if (e.key === 'Escape') {
     onModalClose();
     body.style.overflow = 'visible';
+
+    modalEl.style.height = null;
+    document.querySelector('.modal').style.padding = null;
     window.removeEventListener('keydown', onModalClose);
   }
 }
