@@ -72,7 +72,7 @@ const btnQueued = document.querySelector('[data-modal-queue]')
     }
 }
 
-export default function onModalClose() {
+function onModalClose() {
   backdropModalEl.classList.add('is-hidden');
   body.style.overflow = 'visible';
 

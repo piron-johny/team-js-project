@@ -118,7 +118,7 @@ function addToWatchedArray(e) {
 // }
 
 
-cardOpenModal.addEventListener('click', defineMovie);
+
 
 function addToWatchedArray(e) {
   e.preventDefault();
