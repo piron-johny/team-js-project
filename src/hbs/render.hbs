@@ -11,11 +11,15 @@
       <h3 class='movies-card__title'>{{name}}</h3>
     {{/if}}
 
+    <ul class='movies-card__genres-list'>
+
     {{#each genre_ids}}
-      <ul class='movies-card__genres-list'>
+      
         <li class='movies-card__genres-item'>{{this}}</li>
-      </ul>
+      
     {{/each}}
+
+    </ul>
 
     <span class='delimiter'>|</span>
 
@@ -24,5 +28,7 @@
     {{else}}
       <p class='movies-card__date'>{{first_air_date}}</p>
     {{/if}}
+
+    <div class="rating">{{vote_average}}</div>
   </li>
 {{/each}}
