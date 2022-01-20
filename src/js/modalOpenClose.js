@@ -1,5 +1,6 @@
 import modalRender from '../hbs/modalRender.hbs';
 
+const body = document.querySelector("body");
 const btnCloseModal = document.querySelector("[data-modal-close]");
 const backdropModalEl = document.querySelector("[data-backdrop]");
 const cardOpenModal = document.querySelector(".section-movies__set");
@@ -15,11 +16,15 @@ window.addEventListener('keydown', onEscPress);
 
 function onModalOpen(e) {
 
-    if (e.target.nodeName !== `LI`) {
-        backdropModalEl.classList.remove("is-hidden")
-        const savedFilms = JSON.parse(localStorage.getItem(`Trending`));
-        console.log(savedFilms.results)
-        modalEl.insertAdjacentHTML('beforeend', modalRender(savedFilms));
+      if (e.target.parentElement.className === 'section-movies__card' || e.target.parentElement.className === 'movies-card__genres-list')  {
+          backdropModalEl.classList.remove("is-hidden")
+          body.style.overflow = 'hidden'
+          
+          const findId = e.target.parentNode.id
+          const savedFilms = JSON.parse(localStorage.getItem(`Trending`));
+          const modalFilm = savedFilms.find(film => film.id === +findId)
+
+        modalEl.insertAdjacentHTML('beforeend', modalRender(modalFilm));
     }     
 }
 
@@ -35,9 +40,10 @@ function onBackdropClick(e){
 }
 
 function onEscPress(e) {
-    // console.log(e);
     if (e.key === 'Escape') {
         onModalClose()
         window.removeEventListener('keydown', onModalClose);
  }
 }
+
+export { cardOpenModal }
