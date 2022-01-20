@@ -3,7 +3,7 @@ import modalRender from '../hbs/modalRender.hbs';
 const body = document.querySelector("body");
 const btnCloseModal = document.querySelector("[data-modal-close]");
 const backdropModalEl = document.querySelector("[data-backdrop]");
-const cardOpenModal = document.querySelector(".section-movies__set");
+export const cardOpenModal = document.querySelector(".section-movies__set");
 const modalEl = document.querySelector('.modal__card');
 
 

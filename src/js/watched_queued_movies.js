@@ -70,15 +70,14 @@ async function defineMovie(e) {
     const savedData = localStorage.getItem('Watched')
     const parsedData = JSON.parse(savedData)
     data.results.forEach(el => {
-
-        //     parsedData.push(el)
-        for (let el of data.results) {
-            if (parsedData.filter(elem => elem.id === +e.target.parentElement.id).length === 0) {
+        console.log(e)
+        console.log(el)
+        if (el.id === +e.target.parentElement.id) {
                 parsedData.push(el)
                 localStorage.setItem('Watched', JSON.stringify(parsedData))
-                break
+         
             }
-        }
+        })
 
         // if (parsedData.includes(el.id)) {
         //     console.log(parsedData.includes(el.id))
@@ -109,11 +108,11 @@ async function defineMovie(e) {
 
 
 
-    })
+    }
 
-}
 
-// cardOpenModal.addEventListener("click", defineMovie)
+
+cardOpenModal.addEventListener("click", defineMovie)
 
 
 function addToWatchedArray(e) {
