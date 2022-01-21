@@ -48,7 +48,9 @@
   }
 }
 .modal__card {
-  display: flex;
+  @include respond-to(tablet){
+    display: flex;
+  }
 }
 .modal__btn--close {
   position: absolute;
@@ -181,6 +183,11 @@
   color: getColor('primary-text');
   border: 1px solid getColor('primary-text');
   border-radius: 5px;
+
+  transition-property: all;
+  transition-duration: 200ms;
+  transition-timing-function: linear;
+
   &:hover,
   &:focus {
     background-color: getColor('accent-modal');
