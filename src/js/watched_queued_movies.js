@@ -2,6 +2,7 @@ import moviesRender from '../hbs/moviesRenderHBS.hbs';
 import onModalClose from './modalOpenClose';
 import API from './trendingMovies';
 import { cardOpenModal } from './modalOpenClose';
+const btnWatched = document.querySelector('[data-modal-watched]')
 const axios = require('axios');
 
 const dataDiv = document.querySelector('.movie_data');
@@ -53,45 +54,71 @@ addArrayToLocalStorage([]);
 
 // }
 // console.log(cardOpenModal)
-
-async function defineMovie(e) {
-  e.preventDefault();
-  //  console.log(+e.target.parentElement.id)
-  const data = await API.trendingMovies();
-  const savedData = localStorage.getItem('Watched');
-  const parsedData = JSON.parse(savedData);
-  data.results.forEach(el => {
-    // console.log(e)
-    // console.log(el)
-    if (el.id === +e.target.parentElement.id) {
-      parsedData.push(el);
-      localStorage.setItem('Watched', JSON.stringify(parsedData));
-    }
-  });
-
-  // if (parsedData.includes(el.id)) {
-  //     console.log(parsedData.includes(el.id))
-  //     // parsedData.splice(neededEl, 1)
-  //     console.log("Содержит")
-  // }
-
-  //    if (+e.target.parentElement.id === el.id) {
-  //             // parsedData.splice(neededEl, 1)
-  //        return
-  //       console.log(+e.target.parentElement.id === elem.id)
-  //         }
-  //    } )
-  //     console.log(elem)
-  //
-  //
-
-  // })
-
-  // e.target.textContent = 'Remove from "Watched"'
-  // +e.target.parentElement.id !== i.id
+function addMovieToWatchedFromModal(data) {
+console.log(data)
+    return data;
 }
 
-cardOpenModal.addEventListener('click', defineMovie);
+
+function addToWatchedArray(e) {
+    e.preventDefault()
+     const savedData = localStorage.getItem('Watched')
+    const parsedData = JSON.parse(savedData)
+   parsedData.push(modalFilm.onModalOpen)
+}
+
+// async function defineMovie(e) {
+//     e.preventDefault()
+//     //  console.log(+e.target.parentElement.id)
+//     const data = await API.trendingMovies();
+//     const savedData = localStorage.getItem('Watched')
+//     const parsedData = JSON.parse(savedData)
+//     data.results.forEach(el => {
+
+//         //     parsedData.push(el)
+//         for (let el of data.results) {
+//             if (parsedData.filter(elem => elem.id === +e.target.parentElement.id).length === 0) {
+//                 parsedData.push(el)
+//                 localStorage.setItem('Watched', JSON.stringify(parsedData))
+//                 break
+//             }
+//         }
+
+//         // if (parsedData.includes(el.id)) {
+//         //     console.log(parsedData.includes(el.id))
+//         //     // parsedData.splice(neededEl, 1)
+//         //     console.log("Содержит")
+//         // }
+
+
+//         //    if (+e.target.parentElement.id === el.id) {
+//         //             // parsedData.splice(neededEl, 1)
+//         //        return
+//         //       console.log(+e.target.parentElement.id === elem.id)
+//         //         } 
+//         //    } )
+//         //     console.log(elem)
+//         //     
+//         //     
+
+//         // })
+
+
+
+
+
+//         // e.target.textContent = 'Remove from "Watched"'
+//         // +e.target.parentElement.id !== i.id
+
+
+
+
+//     })
+
+// }
+
+
+
 
 function addToWatchedArray(e) {
   e.preventDefault();
