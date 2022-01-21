@@ -77,6 +77,9 @@ function onModalOpen(e) {
   temp(target, currentTarget);
 };
 
+// логика добавления по нажатию на кнопки
+
+
 function onModalClose() {
   backdropModalEl.classList.add('is-hidden');
   changeParam()
