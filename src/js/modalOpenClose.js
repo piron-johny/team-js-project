@@ -29,9 +29,11 @@ console.log(e.target.parentElement)
         const modalFilm = savedFilms.find(film => film.id === +findId)
 
         modalEl.insertAdjacentHTML('beforeend', modalRender(modalFilm));
-
+// логика добавления по нажатию на кнопки
         const btnWatched = document.querySelector('[data-modal-watched]')
-        const btnQueued = document.querySelector('[data-modal-queue]')
+    const btnQueued = document.querySelector('[data-modal-queue]')
+    
+
         btnWatched.addEventListener("click", () => {
             const savedData = localStorage.getItem('Watched')
             const parsedData = JSON.parse(savedData)
@@ -41,15 +43,50 @@ console.log(e.target.parentElement)
                 btnWatched.textContent = 'Remove from "Watched"'
                 localStorage.setItem('Watched', JSON.stringify(parsedData))
                 savedData;
-                parsedData;
+              parsedData;       
             if (btnWatched.textContent === 'Remove from "Watched"') {
-                btnWatched.addEventListener("click", () => {
-                    parsedData.splice(0, 1)
+              btnWatched.addEventListener("click", () => {
+                  for(let element of parsedData){
+                    parsedData.splice(parsedData.indexOf(element), 1)}
                     localStorage.setItem('Watched', JSON.stringify(parsedData))
                     onModalClose()
                 })
+                }
+                 
+            }
+           
+            else {
+              savedData;
+              parsedData;
+              console.log(parsedData)
+              for (let el of parsedData) {
+  
+            
+                if (modalFilm.id !== el.id) {
+                  parsedData.push(modalFilm)
+                  btnWatched.textContent = 'Remove from "Watched"'
+                  if (btnWatched.textContent === 'Remove from "Watched"') {
+              btnWatched.addEventListener("click", () => {
+            
+console.log(parsedData.indexOf(el))
+                    parsedData.splice(parsedData.indexOf(el), 1)
+                    localStorage.setItem('Watched', JSON.stringify(parsedData))
+                    onModalClose()
+                })
+                }
+                  localStorage.setItem('Watched', JSON.stringify(parsedData))
+                } else {
+                  btnWatched.textContent = 'Remove from "Watched"'
+                  btnWatched.addEventListener("click", () => {
+            
+       
+                    parsedData.splice(parsedData.indexOf(el), 1)
+                    localStorage.setItem('Watched', JSON.stringify(parsedData))
+                    onModalClose()
+                })
+                }
               }
-            } 
+            }
         })
         btnQueued.addEventListener("click", () => {
             const savedData = localStorage.getItem('Queued')
@@ -74,6 +111,9 @@ console.log(e.target.parentElement)
         })
     }
 }
+
+// логика добавления по нажатию на кнопки
+
 
 function onModalClose() {
   backdropModalEl.classList.add('is-hidden');
