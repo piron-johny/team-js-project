@@ -17,6 +17,7 @@ const renderMyLibarary = event => {
 }
 const renderHome = event => {
     event.preventDefault();
+    initialData.page = 1;
     initialData.trendingMovies();
 }
 

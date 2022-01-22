@@ -5,6 +5,8 @@ import 'tui-pagination/dist/tui-pagination.css';
 
 const paginationEl = document.getElementById('pagination');
 
+const notification = document.querySelector('.change-block__notification');
+
 const addDataToLocalStorage = (localStorageKey, moviesArray) => {
     localStorage.setItem(localStorageKey, JSON.stringify(moviesArray))
 }; // можливо потрібно записати як метод для initialData
@@ -12,8 +14,12 @@ const addDataToLocalStorage = (localStorageKey, moviesArray) => {
 const KEY = '2cf91cf1fed5026ae9524dc97ad33068';
 const MOVIES_SET = document.querySelector('.section-movies__set');
 
+// axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
 export const initialData = {
+    // api_key: KEY,
+    // url: '/trending/all/week',
+
     key: KEY,
     page: 1,
     totalPages: 0,
@@ -40,13 +46,16 @@ export const initialData = {
                 addDataToLocalStorage('Genres', this.genresArray)
                 return this.genresArray;
             })
-            .catch()
+            .catch()  // дописати error
     },
 
     namingGenres(array) {
         array.map(movie => {
             const namedGenresArray = [];
             const namedGenresArrayForCard = [];
+            if (!movie.genre_ids) {
+                return;
+            };
             movie.genre_ids.map(id => {
                 this.genresArray.map(idArray => {
                     if (id === idArray.id) {
@@ -108,7 +117,7 @@ export const initialData = {
                 // console.log('After Fetch - currentFetch is trendingMovies:', this.currentFetch === this.trendingMovies);  // перевірка
                 return moviesData;
             })
-            .catch()
+            .catch()  // дописати error
     },
 
     async searchMovies({ key, queryValue, page } = this) {
@@ -135,7 +144,13 @@ export const initialData = {
                 // console.log('After Fetch - currentFetch is searchMovies:', this.currentFetch === this.searchMovies);  // перевірка
                 return moviesData;
             })
-        .catch()
+            .then(moviesData => {
+                if (moviesData.total_results === 0) {
+                    notification.style.display = "block";
+                    setTimeout(() => { notification.style.display = 'none' }, 5000);
+                };
+            })
+            .catch()  // дописати error
     },
 
     addMoviesToWatched() { },
@@ -145,6 +160,14 @@ export const initialData = {
     addMoviesToQueue() { },
       
     removeMoviesFromQueue() { },
+
+    async firstLoadingPage() {
+        try {
+            await this.genresList();
+            await this.trendingMovies();
+        }
+        catch { }
+    },
     
     pagination() { 
         const options = {
@@ -183,5 +206,4 @@ export const initialData = {
 
 }; 
 
-initialData.genresList();   
-initialData.trendingMovies();
+initialData.firstLoadingPage();
