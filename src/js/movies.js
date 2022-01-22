@@ -42,7 +42,7 @@ getWatchedMovies()
 }
     
 
-fetchMovies(550)
+// fetchMovies(550)
 
 
 // buttonWatched.addEventListener('click', addWatchedMovies)

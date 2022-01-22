@@ -30,7 +30,9 @@ function onModalOpen(e) {
 
       const btnWatched = document.querySelector('[data-modal-watched]');
       const btnQueued = document.querySelector('[data-modal-queue]');
-
+      
+      monitorButtonStatusTextWatched()
+      monitorButtonStatusTextQueue()
       btnWatched.addEventListener("click", () => {
      let filmsWatchedArr = [];
   let localStorageData = localStorage.getItem('filmsWatched');
@@ -39,19 +41,32 @@ function onModalOpen(e) {
   }
   if (filmsWatchedArr.find(el => el.id === modalFilm.id)) {
     filmsWatchedArr = filmsWatchedArr.filter(el => el.id !== modalFilm.id);
+    if (filmsWatchedArr.length === 0) {
+        cardOpenModal.innerHTML = "";
+    const listItem = document.createElement('li');
+    listItem.classList.add('main__noFilmsInList');
+    listItem.textContent = "You do not have watched movies. Add them."
+    cardOpenModal.append(listItem);
+    } else {
+      cardOpenModal.innerHTML = filmsWatchedArr;
+    }
   } else {
     filmsWatchedArr.push(modalFilm);
   }
         localStorage.setItem('filmsWatched', JSON.stringify(filmsWatchedArr));
+       
+  monitorButtonStatusTextWatched()
         
-  function monitorButtonStatusTextWatched() {
+      });
+
+function monitorButtonStatusTextWatched() {
   let localStorageFilmsWatched = localStorage.getItem('filmsWatched');
   localStorageFilmsWatched === null ? btnWatched.textContent = "Add to watched" : JSON.parse(localStorageFilmsWatched).find(el => el.id === modalFilm.id) ? btnWatched.textContent = "Delete from watched" : btnWatched.textContent = "Add to watched";
         }
-        monitorButtonStatusTextWatched()
-      });
 
-
+      
+      
+      
       btnQueued.addEventListener("click", () => {
      let filmsQueueArr = [];
   let localStorageData = localStorage.getItem('filmsQueue');
@@ -60,16 +75,27 @@ function onModalOpen(e) {
   }
   if (filmsQueueArr.find(el => el.id === modalFilm.id)) {
     filmsQueueArr = filmsQueueArr.filter(el => el.id !== modalFilm.id);
+    if (filmsQueueArr.length === 0) {
+        cardOpenModal.innerHTML = "";
+    const listItem = document.createElement('li');
+    listItem.classList.add('main__noFilmsInList');
+    listItem.textContent = "You do not have watched movies. Add them."
+    cardOpenModal.append(listItem);
+    } else {
+      cardOpenModal.innerHTML = filmsQueueArr;
+    }
+    
   } else {
     filmsQueueArr.push(modalFilm);
   }
         localStorage.setItem('filmsQueue', JSON.stringify(filmsQueueArr));
+      monitorButtonStatusTextQueue()
+  
+      });
         function monitorButtonStatusTextQueue() {
   let localStorageFilmsQueue = localStorage.getItem('filmsQueue');
-  localStorageFilmsQueue === null ? btnQueued.textContent = "Add to queue" : JSON.parse(localStorageFilmsQueue).find(el => el.id === modalFilm.id) ? btnQueued.textContent = "Delete from queue" : btnQueued.textContent = "Add to queue";
+  localStorageFilmsQueue === null ? btnQueued.textContent = "Add to queue" : JSON.parse(localStorageFilmsQueue).find(el => el.id === modalFilm.id ) ? btnQueued.textContent = "Delete from queue" : btnQueued.textContent = "Add to queue";
         }
-  monitorButtonStatusTextQueue()
-      });
       return;
     };
     target = target.parentElement;
