@@ -1,6 +1,5 @@
 import moviesRender from '../hbs/moviesRenderHBS.hbs';
 import onModalClose from './modalOpenClose';
-import API from './trendingMovies';
 import { cardOpenModal } from './modalOpenClose';
 const btnWatched = document.querySelector('[data-modal-watched]')
 const axios = require('axios');

@@ -5,8 +5,6 @@ import './js/movies';
 import './js/watched_queued_movies';
 import './js/header';
 import './js/switch_Home&Library';
-// import './js/trendingMovies';
-import './js/creadCard';
 import './js/modalOpenClose';
 import './js/searchMovies';
 import './js/initialData';
