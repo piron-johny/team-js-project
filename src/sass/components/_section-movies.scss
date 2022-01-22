@@ -17,7 +17,7 @@
 
   &__card {
     height: 440px;
-    outline: 2px solid rgb(73, 44, 8);
+    // outline: 2px solid rgb(73, 44, 8);
     margin: 0 auto 20px;
     width: 100%;
 
@@ -38,4 +38,24 @@
       flex-basis: calc((100% - 6 * 15px) / 3);
     }
   }
+}
+.main__libraryFilmList {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.main__navigationLibraryButtonActive .superactive {
+  border-bottom: 3px solid black;
+}
+.main__noFilmsInList {
+  width: 100%;
+  height: 100vh;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 3rem;
 }

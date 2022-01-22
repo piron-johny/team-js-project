@@ -1,35 +1,40 @@
 {{#each this}}
-  <li class="section-movies__card" id='{{id}}'>
-    
-    <img
-      src='https://image.tmdb.org/t/p/w300/{{poster_path}}'
-      alt='Image of {{original_title}}'
-      class='movies-card__img'
-    />
-
-    <div class="card-info">
-      {{#if title}}
-        <h3 class='movies-card__title'>{{title}}</h3>
-      {{else}}
-        <h3 class='movies-card__title'>{{name}}</h3>
-      {{/if}}
-
-    <div class='card-info__detals'>
-      <ul class='movies-card__genres-list'>
-      {{#each genre_ids}}
-         <li class='movies-card__genres-item'>{{this}}</li>
-      {{/each}}
-      </ul>
-      <span class='delimiter'>|</span>
-
-      {{#if release_date}}
-        <p class='movies-card__date'>{{release_date}}</p>
-      {{else}}
-        <p class='movies-card__date'>{{first_air_date}}</p>
-      {{/if}}
-      
-      <div class="rating rating--is-hidden">{{vote_average}}</div>
+  <li class="section-movies__card" id={{id}}>
+    <a href="#" class="movies-card__link">
+      <div class="movies-card__img-thumb">
+        <img
+          src='https://image.tmdb.org/t/p/w300/{{poster_path}}'
+          alt='Image of {{original_title}}'
+          class='movies-card__img'
+        
+        />
       </div>
-    </div>
+
+      <div class="card-info">
+        {{#if title}}
+          <h3 class='movies-card__title'>{{title}}</h3>
+        {{else}}
+          <h3 class='movies-card__title'>{{name}}</h3>
+        {{/if}}
+
+      <div class='card-info__detals'>
+        <ul class='movies-card__genres-list'>
+        {{#each genresForCard}}
+          <li class='movies-card__genres-item'>{{this}}</li>
+        {{/each}}
+        </ul>
+
+        <span class='delimiter'>|</span>
+
+        {{!-- {{#if release_date}} --}}
+          <p class='movies-card__date'>{{years}}</p>
+        {{!-- {{else}}
+          <p class='movies-card__date'>{{first_air_date}}</p>
+        {{/if}} --}}
+
+        <div class="rating rating--is-hidden">{{vote_average}}</div>
+        </div>
+      </div>
+    </a>
   </li>
 {{/each}}
