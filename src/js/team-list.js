@@ -8,20 +8,19 @@ link.addEventListener('click', onOpenTeamList);
 
 function onOpenTeamList(e) {
   e.preventDefault();
-
-  // modalEl.classList.add('modal-team-list');
+  document.body.style.overflow = 'hidden';
   modalEl.style.padding = 0;
   modalCartEl.style.height = '100%';
   backdropModalEl.classList.remove('is-hidden');
   modalCartEl.innerHTML = teamMarkup();
 
-  const nameList = document.querySelectorAll('.name__item');
+  const nameList = document.querySelectorAll('.name__item span');
   const descriptionList = document.querySelectorAll('.description__item');
   nameList.forEach((el, ind) => {
     el.addEventListener('click', e => {
       document.querySelector('.name__item.active').classList.remove('active');
       document.querySelector('.description__item.active').classList.remove('active');
-      e.target.classList.add('active');
+      e.target.parentNode.classList.add('active');
       descriptionList[ind].classList.add('active');
     });
   });
