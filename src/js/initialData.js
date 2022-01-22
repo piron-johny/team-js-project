@@ -66,6 +66,23 @@ export const initialData = {
             return;
         });
     },
+
+        yearsForCard (array) {
+        array.map(movie => {
+            let years = ''
+
+            if (movie.first_air_date) {
+                years = movie.first_air_date.slice(0, 4)
+            } else {
+               years = movie.release_date.slice(0, 4);
+            }
+
+            movie.years = years;
+            
+            return;
+        });
+    },
+        
     
     async trendingMovies({ key, page } = this) {
         // console.log('Before Fetch - currentFetch is trendingMovies:', this.currentFetch === this.trendingMovies);  // перевірка
@@ -84,6 +101,7 @@ export const initialData = {
                 this.totalResults = moviesData.total_results;
                 this.moviesArrayCurrent = moviesData.results;
                 this.namingGenres(this.moviesArrayCurrent);
+                this.yearsForCard(this.moviesArrayCurrent);
                 this.pagination();
                 // console.log('currentPage(response.data.page):', moviesData.page);    // перевірка на поточну сторінку
                 MOVIES_SET.innerHTML = moviesRender(this.moviesArrayCurrent);
@@ -110,6 +128,7 @@ export const initialData = {
                 this.totalResults = moviesData.total_results;
                 this.moviesArrayCurrent = moviesData.results;
                 this.namingGenres(this.moviesArrayCurrent);
+                this.yearsForCard(this.moviesArrayCurrent);
                 this.pagination();
                 // console.log('currentPage(response.data.page):', moviesData.page);    // перевірка на поточну сторінку
                 MOVIES_SET.innerHTML = moviesRender(this.moviesArrayCurrent);
@@ -161,6 +180,7 @@ export const initialData = {
             this.currentFetch();
         });
     },
+
 }; 
 
 initialData.genresList();   
