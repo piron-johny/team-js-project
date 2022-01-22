@@ -34,11 +34,12 @@
   }
   .tui-page-btn.tui-is-selected {
     background: getColor('accent');
-  }
-  #selected-btn {
     background-color: getColor('accent');
     border-color: transparent;
   }
+  // #selected-btn {
+
+  // }
   .tui-prev,
   .tui-next,
   .tui-page-btn {
