@@ -47,32 +47,9 @@
     align-items: center;
     justify-content: center;
   }
-}
-.arrow {
-  position: fixed;
-  z-index: 5;
-  right: 20px;
-  bottom: 50px;
-  width: 40px;
-  height: 40px;
-  background: getColor('accent');
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-}
-
-.arrow.show {
-  opacity: 1;
-}
-
-.arrow:hover {
-  background: #817ffa;
-  cursor: pointer;
-}
-
-.arrow span {
-  font-size: 20px;
-  color: #fff;
+  .tui-last-child.tui-is-selected,
+  .tui-first-child.tui-is-selected {
+    border-right: none;
+    border-left: none;
+  }
 }
