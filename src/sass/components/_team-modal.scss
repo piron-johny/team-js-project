@@ -25,6 +25,9 @@
   padding-left: 5px;
   cursor: pointer;
   transition: border 200ms linear, background 300ms linear;
+  &:hover {
+    background: darken(getColor('bg-page'), 5%);
+  }
   @include respond-to(tablet) {
     padding-left: 15px;
   }
