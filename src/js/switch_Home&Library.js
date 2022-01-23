@@ -13,7 +13,10 @@ const renderMyLibarary = event => {
     event.preventDefault();
     moviesSet.innerHTML = moviesRender(initialData.moviesArrayWatched);
     renderWatchedFilmList()
-    watchedBtn.classList.add('superactive')
+  watchedBtn.classList.add('superactive');
+
+  const rating = document.querySelectorAll('.rating');
+  rating.forEach(item => item.classList.remove('rating--is-hidden'));
 }
 const renderHome = event => {
     event.preventDefault();
@@ -42,8 +45,12 @@ function renderWatchedFilmList() {
     listItem.textContent = "You do not have watched movies. Add them."
     moviesSet.append(listItem);
   }
-  queuedBtn.classList.remove('main__navigationLibraryButtonActive');
-  watchedBtn.classList.add('main__navigationLibraryButtonActive');
+  queuedBtn.classList.remove('superactive');
+  watchedBtn.classList.add('superactive');
+
+  const rating = document.querySelectorAll('.rating');
+  rating.forEach(item => item.classList.remove('rating--is-hidden'));
+
 }
 
 watchedBtn.addEventListener("click", renderWatchedFilmList)
@@ -63,7 +70,11 @@ function renderQueuedFilmList() {
     listItem.textContent = "You do not have to queue movies to watch. Add them."
     moviesSet.append(listItem);
   }
-  queuedBtn.classList.add('main__navigationLibraryButtonActive');
-  watchedBtn.classList.remove('main__navigationLibraryButtonActive');
+  queuedBtn.classList.add('superactive');
+  watchedBtn.classList.remove('superactive');
+
+  const rating = document.querySelectorAll('.rating');
+  rating.forEach(item => item.classList.remove('rating--is-hidden'));
+
 }
 queuedBtn.addEventListener("click", renderQueuedFilmList)
