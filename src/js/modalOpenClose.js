@@ -1,4 +1,5 @@
 import modalRender from '../hbs/modalRender.hbs';
+import moviesRender from '../hbs/render.hbs';
 import { initialData } from "./initialData";
 
 const body = document.querySelector('body');
@@ -48,7 +49,7 @@ function onModalOpen(e) {
     listItem.textContent = "You do not have watched movies. Add them."
     cardOpenModal.append(listItem);
     } else {
-      cardOpenModal.innerHTML = filmsWatchedArr;
+      cardOpenModal.innerHTML = moviesRender(filmsWatchedArr);
     }
   } else {
     filmsWatchedArr.push(modalFilm);
@@ -82,7 +83,7 @@ function monitorButtonStatusTextWatched() {
     listItem.textContent = "You do not have watched movies. Add them."
     cardOpenModal.append(listItem);
     } else {
-      cardOpenModal.innerHTML = filmsQueueArr;
+        cardOpenModal.innerHTML = moviesRender(filmsQueueArr);
     }
     
   } else {
