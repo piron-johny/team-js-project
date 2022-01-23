@@ -8,7 +8,7 @@ const paginationEl = document.getElementById('pagination');
 const notification = document.querySelector('.change-block__notification');
 
 const addDataToLocalStorage = (localStorageKey, moviesArray) => {
-    localStorage.setItem(localStorageKey, JSON.stringify(moviesArray))
+    localStorage.setItem(localStorageKey, JSON.stringify(moviesArray));
 }; // можливо потрібно записати як метод для initialData
 
 const KEY = '2cf91cf1fed5026ae9524dc97ad33068';
@@ -39,11 +39,11 @@ export const initialData = {
 
     async genresList({key} = this) {
         await axios.get(
-          `https://api.themoviedb.org/3/genre/movie/list?api_key=${key}`,
+            `https://api.themoviedb.org/3/genre/movie/list?api_key=${key}`,
         )
             .then(response => {
                 this.genresArray = response.data.genres;
-                addDataToLocalStorage('Genres', this.genresArray)
+                addDataToLocalStorage('Genres', this.genresArray);
                 return this.genresArray;
             })
             .catch()  // дописати error
@@ -51,8 +51,8 @@ export const initialData = {
 
     namingGenres(array) {
         array.map(movie => {
-            const namedGenresArray = [];
-            const namedGenresArrayForCard = [];
+            movie.genres = [];
+            movie.genresForCard = [];
             if (!movie.genre_ids) {
                 return;
             };
@@ -60,39 +60,35 @@ export const initialData = {
                 this.genresArray.map(idArray => {
                     if (id === idArray.id) {
                         id = idArray.name;
-                        namedGenresArray.push(id);
-                        namedGenresArrayForCard.push(id);
+                        movie.genres.push(id);
+                        movie.genresForCard.push(id);
                     };
-                })
+                });
             });
-            if (namedGenresArrayForCard.length > 3) {
-                namedGenresArrayForCard.length = 3;
-                namedGenresArrayForCard[2] = 'Others'
+            if (movie.genresForCard.length > 3) {
+                movie.genresForCard.length = 3;
+                movie.genresForCard[2] = 'Others';
             };
-
-            movie.genres = namedGenresArray;
-            movie.genresForCard = namedGenresArrayForCard;
             return;
         });
     },
 
-        yearsForCard (array) {
+    yearsForCard(array) {
         array.map(movie => {
-            let years = ''
+            movie.years = '';
 
             if (movie.first_air_date) {
-                years = movie.first_air_date.slice(0, 4)
-            } else {
-               years = movie.release_date.slice(0, 4);
-            }
-
-            movie.years = years;
-            
+                movie.years = movie.first_air_date.slice(0, 4);
+                return;
+            };
+            if (movie.release_date) {
+                movie.years = movie.release_date.slice(0, 4);
+                return;
+            };
             return;
         });
     },
         
-    
     async trendingMovies({ key, page } = this) {
         // console.log('Before Fetch - currentFetch is trendingMovies:', this.currentFetch === this.trendingMovies);  // перевірка
         if (this.currentFetch !== this.trendingMovies) {
@@ -203,7 +199,6 @@ export const initialData = {
             this.currentFetch();
         });
     },
-
-}; 
+};
 
 initialData.firstLoadingPage();
