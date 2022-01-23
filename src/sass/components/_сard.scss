@@ -2,11 +2,12 @@
   display: block;
   border-radius: 5px;
 
-  // transition: box-shadow 250ms $cubic;
+  transition: all 250ms $cubic;
 
   &:hover,
   &:focus {
     box-shadow: 2px 4px 4px 2px getColor('modal-text');
+    transform: scale(1.05);
   }
 }
 
