@@ -25,7 +25,6 @@ function onModalOpen(e) {
       body.style.overflow = 'hidden';
           
       const findId = +target.id;
-      console.dir(findId);
       const modalFilm = initialData.moviesArrayCurrent.find(film => film.id === findId);
       modalEl.insertAdjacentHTML('beforeend', modalRender(modalFilm));
 
