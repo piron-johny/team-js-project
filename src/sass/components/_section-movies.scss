@@ -1,6 +1,11 @@
 .section-movies {
   padding: 20px 0 40px;
-  background: getColor('bg-page');
+  body.dark-theme & {
+    background: #242526;
+  }
+  body.light-theme & {
+    background: getColor('bg-page');
+  }
 
   @include respond-to(tablet) {
     padding: 60px 0;
@@ -54,4 +59,7 @@
   font-weight: 500;
   text-align: center;
   margin-top: 3rem;
+  body.dark-theme & {
+    color: getColor('header-text');
+  }
 }

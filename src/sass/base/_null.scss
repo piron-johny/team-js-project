@@ -8,12 +8,25 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  body.dark-theme & {
+    background: #242526;
+    color: getColor('header-text');
+  }
+  body.light-theme & {
+    background: getColor('bg-page');
+  }
 }
 
 .page {
   min-height: 100%;
   display: flex;
   flex-direction: column;
+  body.dark-theme & {
+    background: #242526;
+  }
+  body.light-theme & {
+    background: getColor('bg-page');
+  }
 }
 
 main {

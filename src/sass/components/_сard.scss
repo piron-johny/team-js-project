@@ -6,7 +6,7 @@
 
   &:hover,
   &:focus {
-    box-shadow: 2px 4px 4px 2px getColor('modal-text');
+    box-shadow: 0px 0px 15px getColor('modal-text');
     transform: scale(1.05);
   }
 }
@@ -18,7 +18,12 @@
 }
 
 .movies-card__title {
-  color: getColor('primary-text');
+  body.dark-theme & {
+    color: getColor('modal-rectangle');
+  }
+  body.light-theme & {
+    color: getColor('footer-text');
+  }
 
   font-style: normal;
   font-weight: 500;
