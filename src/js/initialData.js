@@ -179,6 +179,7 @@ export const initialData = {
       .then(moviesData => {
         if (moviesData.total_results === 0) {
           notification.style.display = 'block';
+          paginationEl.classList.add('hidden');
           setTimeout(() => {
             notification.style.display = 'none';
             this.trendingMovies();
