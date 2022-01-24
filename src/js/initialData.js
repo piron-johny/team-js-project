@@ -177,7 +177,10 @@ export const initialData = {
             .then(moviesData => {
                 if (moviesData.total_results === 0) {
                     notification.style.display = "block";
-                    setTimeout(() => { notification.style.display = 'none' }, 5000);
+                    setTimeout(() => {
+                        notification.style.display = 'none';
+                        this.trendingMovies();
+                    }, 5000);
                 };
             })
             .catch()  // дописати error
