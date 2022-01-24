@@ -1,6 +1,8 @@
 .movies-card__link {
-  display: block;
+  display: flex;
   border-radius: 5px;
+  height: 100%;
+  flex-direction: column;
 
   transition: all 250ms $cubic;
 
@@ -29,6 +31,7 @@
 
 .card-info {
   padding: 10px 0px 5px 5px;
+  flex-grow: 1;
 }
 
 .card-info__detals {
