@@ -1,0 +1,86 @@
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+
+.select {
+  background-color: burlywood;
+  // padding: 40px 0 0;
+  font-size: 16px;
+  overflow: hidden;
+  // height: auto;
+}
+
+.select__form {
+  margin-top: 15px;
+  padding: 0 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+
+  width: 100%;
+
+  border: 2px solid #ffffff;
+}
+
+.search {
+  margin-top: 15px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  width: 100%;
+
+  border: 2px solid #ffffff;
+}
+
+.search__input {
+  border-bottom: 2px solid #ffffff;
+}
+
+.select__label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: auto;
+  cursor: pointer;
+}
+
+.select__label::before {
+  margin-right: 10px;
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid black;
+  border-radius: 100%;
+}
+
+.select__input:checked + .select__label::before {
+  background-image: radial-gradient(circle at center, blue 50%, white 50%);
+}
+
+.output {
+  font-style: 16px;
+  line-height: 2;
+  margin-top: 15px;
+  padding-left: 20px;
+  width: 100%;
+  height: auto;
+  border: 2px solid #ffffff;
+}
+
+.close,
+.open {
+  display: block;
+  margin: 20px auto 0;
+}
+
+.is-none {
+  display: none;
+}
