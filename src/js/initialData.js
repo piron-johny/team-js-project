@@ -9,7 +9,7 @@ const paginationEl = document.getElementById('pagination');
 const notification = document.querySelector('.change-block__notification');
 
 const addDataToLocalStorage = (localStorageKey, moviesArray) => {
-  localStorage.setItem(localStorageKey, JSON.stringify(moviesArray));
+    localStorage.setItem(localStorageKey, JSON.stringify(moviesArray));
 }; // можливо потрібно записати як метод для initialData
 
 const KEY = '2cf91cf1fed5026ae9524dc97ad33068';
@@ -22,8 +22,8 @@ export const initialData = {
 
     url: '',
     params: {
-      api_key: KEY,
-      page: 1,
+        api_key: KEY,
+        page: 1,
     },
 
     key: KEY,
