@@ -6,7 +6,7 @@
         {{#if poster_path}}
           src='https://image.tmdb.org/t/p/w500/{{poster_path}}'
         {{else}}
-          src='./images/card.jpg'
+          src="https://i.ibb.co/b2HnTkB/card-1-Photo-Room.jpg"
         {{/if}}
           alt='Image of {{original_title}}'
           class='movies-card__img'
@@ -29,11 +29,8 @@
 
         <span class='delimiter'>|</span>
 
-        {{!-- {{#if release_date}} --}}
-          <p class='movies-card__date'>{{years}}</p>
-        {{!-- {{else}}
-          <p class='movies-card__date'>{{first_air_date}}</p>
-        {{/if}} --}}
+        <p class='movies-card__date'>{{years}}</p>
+    
 
         <div class="rating rating--is-hidden">{{vote_average}}</div>
         </div>
@@ -41,3 +38,4 @@
     </a>
   </li>
 {{/each}}
+
