@@ -2,6 +2,7 @@ import axios from 'axios';
 import moviesRender from '../hbs/render.hbs';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+// import './select';
 
 const paginationEl = document.getElementById('pagination');
 
@@ -14,11 +15,16 @@ const addDataToLocalStorage = (localStorageKey, moviesArray) => {
 const KEY = '2cf91cf1fed5026ae9524dc97ad33068';
 const MOVIES_SET = document.querySelector('.section-movies__set');
 
-// axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
+axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
 export const initialData = {
-  // api_key: KEY,
-  // url: '/trending/all/week',
+  baseURL: 'https://api.themoviedb.org/3/',
+
+  url: '',
+  params: {
+    api_key: KEY,
+    page: 1,
+  },
 
   key: KEY,
   page: 1,
@@ -50,8 +56,8 @@ export const initialData = {
 
   namingGenres(array) {
     array.map(movie => {
-      const namedGenresArray = [];
-      const namedGenresArrayForCard = [];
+      movie.genres = [];
+      movie.genresForCard = [];
       if (!movie.genre_ids) {
         return;
       }
@@ -59,49 +65,38 @@ export const initialData = {
         this.genresArray.map(idArray => {
           if (id === idArray.id) {
             id = idArray.name;
-            namedGenresArray.push(id);
-            namedGenresArrayForCard.push(id);
+            movie.genres.push(id);
+            movie.genresForCard.push(id);
           }
         });
       });
-      if (namedGenresArrayForCard.length > 3) {
-        namedGenresArrayForCard.length = 3;
-        namedGenresArrayForCard[2] = 'Others';
+      if (movie.genresForCard.length > 3) {
+        movie.genresForCard.length = 3;
+        movie.genresForCard[2] = 'Others';
       }
-
-      movie.genres = namedGenresArray;
-      movie.genresForCard = namedGenresArrayForCard;
       return;
     });
   },
 
   yearsForCard(array) {
     array.map(movie => {
-      let years = '';
+      movie.years = '';
 
       if (movie.first_air_date) {
-        years = movie.first_air_date.slice(0, 4);
-      } else {
-        years = movie.release_date.slice(0, 4);
+        movie.years = movie.first_air_date.slice(0, 4);
+        return;
       }
-
-      movie.years = years;
-
+      if (movie.release_date) {
+        movie.years = movie.release_date.slice(0, 4);
+        return;
+      }
       return;
     });
   },
 
-  async trendingMovies({ key, page } = this) {
-    // console.log('Before Fetch - currentFetch is trendingMovies:', this.currentFetch === this.trendingMovies);  // перевірка
-    if (this.currentFetch !== this.trendingMovies) {
-      this.page = 1;
-      page = 1;
-    }
-    this.currentPageStatus = 'fetch';
+  async request() {
     await axios
-      .get(
-        `https://api.themoviedb.org/3/trending/all/week?api_key=${key}&language=en-US&page=${page}`,
-      )
+      .get(this.url, { params: { ...this.params } })
       .then(response => {
         const moviesData = response.data;
         this.currentFetch = this.trendingMovies;
@@ -115,6 +110,43 @@ export const initialData = {
         MOVIES_SET.innerHTML = moviesRender(this.moviesArrayCurrent);
         // console.log('After Fetch - currentFetch is trendingMovies:', this.currentFetch === this.trendingMovies);  // перевірка
         return moviesData;
+      })
+      .catch(); // дописати error
+  },
+
+  async trendingMovies({ key, page } = this) {
+    // console.log('Before Fetch - currentFetch is searchMovies:', this.currentFetch === this.searchMovies);  // перевірка
+    if (this.currentFetch !== this.trendingMovies) {
+      this.page = 1;
+      page = 1;
+    }
+    this.currentPageStatus = 'fetch';
+    await axios
+      .get(
+        `https://api.themoviedb.org/3/trending/movie/week?api_key=${key}&language=en-US&page=${page}`,
+      )
+      .then(response => {
+        const moviesData = response.data;
+        this.currentFetch = this.trendingMovies;
+        this.totalPages = moviesData.total_pages;
+        this.totalResults = moviesData.total_results;
+        this.moviesArrayCurrent = moviesData.results;
+        this.namingGenres(this.moviesArrayCurrent);
+        this.yearsForCard(this.moviesArrayCurrent);
+        this.pagination();
+        // console.log('currentPage(response.data.page):', moviesData.page);    // перевірка на поточну сторінку
+        MOVIES_SET.innerHTML = moviesRender(this.moviesArrayCurrent);
+        // console.log('After Fetch - currentFetch is searchMovies:', this.currentFetch === this.searchMovies);  // перевірка
+        return moviesData;
+      })
+      .then(moviesData => {
+        if (moviesData.total_results === 0) {
+          notification.style.display = 'block';
+          paginationEl.classList.add('hidden');
+          setTimeout(() => {
+            notification.style.display = 'none';
+          }, 5000);
+        }
       })
       .catch(); // дописати error
   },
@@ -147,9 +179,9 @@ export const initialData = {
       .then(moviesData => {
         if (moviesData.total_results === 0) {
           notification.style.display = 'block';
-          paginationEl.classList.add('hidden');
           setTimeout(() => {
             notification.style.display = 'none';
+            this.trendingMovies();
           }, 5000);
         }
       })
