@@ -3,10 +3,13 @@
     <a href="#" class="movies-card__link">
       <div class="movies-card__img-thumb">
         <img
-          src={{image}}
+        {{#if poster_path}}
+          src='https://image.tmdb.org/t/p/w500/{{poster_path}}'
+        {{else}}
+          src='./images/card.jpg'
+        {{/if}}
           alt='Image of {{original_title}}'
           class='movies-card__img'
-        
         />
       </div>
 
