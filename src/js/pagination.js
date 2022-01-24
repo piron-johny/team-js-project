@@ -2,6 +2,7 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 
+import { initialData } from './initialData';
 import moviesRender from '../hbs/render.hbs';
 import FetchServise from './servisesAPI.js';
 const fetchServise = new FetchServise();
@@ -50,3 +51,7 @@ pagination.on('afterMove', eData => {
     return;
   });
 });
+
+function libraryWathed(page = 1) {
+  return initialData.moviesArrayWatched;
+}
