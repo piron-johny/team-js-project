@@ -8,73 +8,83 @@ const watchedBtn = document.querySelector('[name="watched"]');
 const queuedBtn = document.querySelector('[name="queue"]');
 
 const moviesSet = document.querySelector('.section-movies__set');
-
+const paginationEl = document.getElementById('pagination');
 const renderMyLibarary = event => {
-    event.preventDefault();
-    moviesSet.innerHTML = moviesRender(initialData.moviesArrayWatched);
-    renderWatchedFilmList()
+  event.preventDefault();
+  moviesSet.innerHTML = moviesRender(initialData.moviesArrayWatched);
+  renderWatchedFilmList();
   watchedBtn.classList.add('superactive');
 
   const rating = document.querySelectorAll('.rating');
   rating.forEach(item => item.classList.remove('rating--is-hidden'));
-}
+};
 const renderHome = event => {
-    event.preventDefault();
-    initialData.page = 1;
-    initialData.trendingMovies();
-}
+  event.preventDefault();
+  initialData.page = 1;
+  initialData.trendingMovies();
+};
 
 logo.addEventListener('click', renderHome);
 btnHome.addEventListener('click', renderHome);
 btnMyLibrary.addEventListener('click', renderMyLibarary);
 
-
 function renderWatchedFilmList() {
-    moviesSet.innerHTML = "";
+  moviesSet.innerHTML = '';
   let watchedFilmListFromLS = localStorage.getItem('filmsWatched');
-  if (watchedFilmListFromLS !== null && JSON.parse(watchedFilmListFromLS).length !== 0) {
-      
-      moviesSet.insertAdjacentHTML("afterbegin", moviesRender(JSON.parse(watchedFilmListFromLS)))
-  
-    
-   
-  } else if (watchedFilmListFromLS === null || JSON.parse(watchedFilmListFromLS).length === 0) {
-    moviesSet.innerHTML = "";
+  if (
+    watchedFilmListFromLS !== null &&
+    JSON.parse(watchedFilmListFromLS).length !== 0 &&
+    JSON.parse(watchedFilmListFromLS).length <= 20
+  ) {
+    moviesSet.insertAdjacentHTML('afterbegin', moviesRender(JSON.parse(watchedFilmListFromLS)));
+    paginationEl.classList.add('hidden');
+  } else if (
+    watchedFilmListFromLS === null ||
+    (JSON.parse(watchedFilmListFromLS).length === 0 &&
+      JSON.parse(watchedFilmListFromLS).length >= 20)
+  ) {
+    moviesSet.innerHTML = '';
     const listItem = document.createElement('li');
     listItem.classList.add('main__noFilmsInList');
-    listItem.textContent = "You do not have watched movies. Add them."
+    listItem.textContent = 'You do not have watched movies. Add them.';
     moviesSet.append(listItem);
+    paginationEl.classList.add('hidden');
   }
   queuedBtn.classList.remove('superactive');
   watchedBtn.classList.add('superactive');
 
   const rating = document.querySelectorAll('.rating');
   rating.forEach(item => item.classList.remove('rating--is-hidden'));
-
 }
 
-watchedBtn.addEventListener("click", renderWatchedFilmList)
-
+watchedBtn.addEventListener('click', renderWatchedFilmList);
 
 function renderQueuedFilmList() {
-    watchedBtn.classList.remove('superactive')
-    moviesSet.innerHTML = "";
+  watchedBtn.classList.remove('superactive');
+  moviesSet.innerHTML = '';
   let queueFilmListFromLS = localStorage.getItem('filmsQueue');
-  if (queueFilmListFromLS !== null && JSON.parse(queueFilmListFromLS).length !== 0) {
-     moviesSet.insertAdjacentHTML("afterbegin", moviesRender(JSON.parse(queueFilmListFromLS)))
-  
-  } else if (queueFilmListFromLS === null || JSON.parse(queueFilmListFromLS).length === 0) {
-    moviesSet.innerHTML = "";
+  if (
+    queueFilmListFromLS !== null &&
+    JSON.parse(queueFilmListFromLS).length !== 0 &&
+    JSON.parse(queueFilmListFromLS).length <= 20
+  ) {
+    moviesSet.insertAdjacentHTML('afterbegin', moviesRender(JSON.parse(queueFilmListFromLS)));
+    paginationEl.classList.add('hidden');
+  } else if (
+    queueFilmListFromLS === null ||
+    (JSON.parse(queueFilmListFromLS).length === 0 && JSON.parse(queueFilmListFromLS).length >= 20)
+  ) {
+    moviesSet.innerHTML = '';
     const listItem = document.createElement('li');
     listItem.classList.add('main__noFilmsInList');
-    listItem.textContent = "You do not have to queue movies to watch. Add them."
+    listItem.textContent = 'You do not have to queue movies to watch. Add them.';
     moviesSet.append(listItem);
+    paginationEl.classList.add('hidden');
   }
   queuedBtn.classList.add('superactive');
   watchedBtn.classList.remove('superactive');
 
   const rating = document.querySelectorAll('.rating');
   rating.forEach(item => item.classList.remove('rating--is-hidden'));
-
 }
-queuedBtn.addEventListener("click", renderQueuedFilmList)
+queuedBtn.addEventListener('click', renderQueuedFilmList);
