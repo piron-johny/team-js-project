@@ -1,14 +1,14 @@
-// import moviesRender from '../hbs/render.hbs';
-
 const homeBtn = document.getElementById('home');
 const libraryBtn = document.getElementById('library');
 const form = document.querySelector('.search-form');
 const formBlock = document.querySelector('.form-block');
 const pageHeaderEl = document.querySelector('.page-header');
 const libraryBtns = document.querySelector('.our-library');
+const logo = document.querySelector('.page-header__logo');
 
 libraryBtn.addEventListener('click', createSecondHeader);
 homeBtn.addEventListener('click', createFirstHeader);
+logo.addEventListener('click', createFirstHeader);
 
 function createSecondHeader() {
     libraryBtn.classList.add("button-nav--current");
@@ -19,12 +19,10 @@ function createSecondHeader() {
     
     pageHeaderEl.classList.remove("page-header");
     pageHeaderEl.classList.add("page-header__library");
-
-    // const rating = document.querySelectorAll('.rating');
-    // console.log(rating);
 }
 
 function createFirstHeader() {
+    
     libraryBtn.classList.remove("button-nav--current");
     homeBtn.classList.add("button-nav--current");
 

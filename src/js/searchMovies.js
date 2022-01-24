@@ -12,7 +12,20 @@ const searchMovies = event => {
   initialData.page = 1;
   initialData.queryValue = inputValue;
   initialData.searchMovies();
-  input.value = '';
+  // input.value = '';
 };
 
 form.addEventListener("submit", searchMovies);
+
+
+const searchReset = el => {
+  el.preventDefault();
+  const inputValue = input.value.trim().toLowerCase();
+  if (inputValue === '') {
+    initialData.trendingMovies();
+    return;
+  };
+  return;
+};
+
+input.addEventListener('input', searchReset);
