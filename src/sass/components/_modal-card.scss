@@ -16,10 +16,9 @@
 .modal {
   position: absolute;
   width: 90%;
-  height: 90%;
-  top: 50%;
+  top: 20px;
   left: 50%;
-  transform: translate(-50%, -40%);
+  transform: translate(-50%, 0);
   min-width: 280px;
   min-height: 958px;
   padding: 48px 20px 40px 20px;
@@ -27,28 +26,25 @@
   z-index: 100;
   @include respond-to(mobile) {
     min-width: 0;
-    min-height: 0;
+    min-height: 958px;
     width: 280px;
-    height: 958px;
   }
   @include respond-to(tablet) {
-    margin-top: 237px;
-    transform: translate(-50%, -90%);
+    top: 237px;
     padding: 40px 30px 40px 30px;
     min-height: 0;
     width: 618px;
     height: 562px;
   }
   @include respond-to(desktop) {
-    transform: translate(-50%, -70%);
-    margin-top: 100px;
+    top: 100px;
     padding: 50px 30px 40px 30px;
     width: 882px;
     height: 568px;
   }
 }
 .modal__card {
-  @include respond-to(tablet){
+  @include respond-to(tablet) {
     display: flex;
   }
 }
