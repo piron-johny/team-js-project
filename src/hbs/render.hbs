@@ -6,7 +6,7 @@
         {{#if poster_path}}
           src='https://image.tmdb.org/t/p/w500/{{poster_path}}'
         {{else}}
-          src='./images/card.jpg'
+          src="https://i.ibb.co/b2HnTkB/card-1-Photo-Room.jpg"
         {{/if}}
           alt='Image of {{original_title}}'
           class='movies-card__img'
@@ -21,19 +21,23 @@
         {{/if}}
 
       <div class='card-info__detals'>
+        {{#if genresForCard}}
         <ul class='movies-card__genres-list'>
         {{#each genresForCard}}
           <li class='movies-card__genres-item'>{{this}}</li>
         {{/each}}
         </ul>
+         {{else}}
+        <ul class='movies-card__genres-list'>
+          <li class='movies-card__genres-item'>Undefined</li>
+        </ul>
+        {{/if}}
 
+        {{#if years}}
         <span class='delimiter'>|</span>
+        <p class='movies-card__date'>{{years}}</p>
+        {{/if}}
 
-        {{!-- {{#if release_date}} --}}
-          <p class='movies-card__date'>{{years}}</p>
-        {{!-- {{else}}
-          <p class='movies-card__date'>{{first_air_date}}</p>
-        {{/if}} --}}
 
         <div class="rating rating--is-hidden">{{vote_average}}</div>
         </div>
