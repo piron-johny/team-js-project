@@ -1,4 +1,7 @@
 .tui-pagination.tui-pagination__custom {
+  &.hidden {
+    display: none;
+  }
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -31,6 +34,9 @@
     font-style: normal;
     border-radius: 5px;
     border-color: transparent;
+    body.dark-theme & {
+      color: getColor('header-text');
+    }
   }
   .tui-page-btn.tui-is-selected {
     background: getColor('accent');
@@ -47,10 +53,33 @@
     text-align: center;
     align-items: center;
     justify-content: center;
+    body.dark-theme & {
+      color: getColor('modal-rectangle');
+    }
   }
   .tui-last-child.tui-is-selected,
   .tui-first-child.tui-is-selected {
     border-right: none;
     border-left: none;
   }
+}
+body.dark-theme .tui-pagination__custom .tui-page-btn:hover {
+  color: #000;
+}
+body.dark-theme .tui-page-btn.tui-next:hover,
+body.dark-theme .tui-page-btn.tui-prev:hover {
+  background: #fff;
+}
+
+body.dark-theme .tui-last .tui-ico-last {
+  color: red;
+}
+
+body.dark-theme .tui-last,
+body.dark-theme .tui-first,
+body.dark-theme .tui-next-is-ellip,
+body.dark-theme .tui-prev-is-ellip,
+body.dark-theme .tui-page-btn.tui-next,
+body.dark-theme .tui-page-btn.tui-prev {
+  background: #ffffff85;
 }

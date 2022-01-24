@@ -49,30 +49,6 @@
     color: getColor('accent');
     border-left: 5px solid getColor('accent');
     position: relative;
-    // &::before {
-    //   content: '';
-    //   position: absolute;
-    //   bottom: -70px;
-    //   right: 0px;
-    //   background: transparent;
-    //   width: 70px;
-    //   height: 70px;
-    //   border-top-right-radius: 50%;
-    //   box-shadow: 0px -25px 0 #fff;
-    //   transition: box-shadow 300ms linear;
-    // }
-    // &::after {
-    //   content: '';
-    //   position: absolute;
-    //   top: -70px;
-    //   right: 0px;
-    //   background: transparent;
-    //   width: 70px;
-    //   height: 70px;
-    //   border-bottom-right-radius: 50%;
-    //   box-shadow: 0px 25px 0 #fff;
-    //   transition: box-shadow 300ms linear;
-    // }
   }
 }
 .description {
@@ -90,7 +66,7 @@
 .description__item {
   position: absolute;
   height: 500px;
-  top: -60vh;
+  top: -75vh;
   left: 20px;
   opacity: 0;
   padding-right: 20px;

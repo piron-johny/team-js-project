@@ -15,7 +15,8 @@ function onOpenTeamList(e) {
   e.preventDefault();
   document.body.style.overflow = 'hidden';
   modalEl.style.padding = 0;
-  modalCartEl.style.height = '100%';
+  modalEl.style.display = 'flex';
+  modalCartEl.style.flex = '1 1 100%';
   backdropModalEl.classList.remove('is-hidden');
   modalCartEl.innerHTML = teamMarkup();
 

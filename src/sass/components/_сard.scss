@@ -1,12 +1,14 @@
 .movies-card__link {
-  display: block;
+  display: flex;
   border-radius: 5px;
+  height: 100%;
+  flex-direction: column;
 
   transition: all 250ms $cubic;
 
   &:hover,
   &:focus {
-    box-shadow: 2px 4px 4px 2px getColor('modal-text');
+    box-shadow: 0px 0px 15px getColor('modal-text');
     transform: scale(1.05);
   }
 }
@@ -18,7 +20,12 @@
 }
 
 .movies-card__title {
-  color: getColor('primary-text');
+  body.dark-theme & {
+    color: getColor('modal-rectangle');
+  }
+  body.light-theme & {
+    color: getColor('footer-text');
+  }
 
   font-style: normal;
   font-weight: 500;
@@ -29,6 +36,7 @@
 
 .card-info {
   padding: 10px 0px 5px 5px;
+  flex-grow: 1;
 }
 
 .card-info__detals {
