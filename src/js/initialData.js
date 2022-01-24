@@ -18,7 +18,7 @@ const MOVIES_SET = document.querySelector('.section-movies__set');
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
 export const initialData = {
-  baseURL: 'https://api.themoviedb.org/3/',
+    baseURL: 'https://api.themoviedb.org/3/',
 
   url: '',
   params: {
