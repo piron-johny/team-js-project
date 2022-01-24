@@ -88,6 +88,24 @@ export const initialData = {
             return;
         });
     },
+
+    imgForCard(array) {
+        array.map(movie => {
+            movie.image = '';
+
+            if (movie.poster_path !== null) {
+                movie.image = `https://image.tmdb.org/t/p/w300/${movie.poster_path}`;
+                console.log(movie.image.length);                
+            };
+            
+            if (movie.poster_path == null) {
+                movie.image = './images/card.jpg'
+                console.log(movie.image);
+              
+            };
+            return;
+        })
+    },
         
     async trendingMovies({ key, page } = this) {
         // console.log('Before Fetch - currentFetch is trendingMovies:', this.currentFetch === this.trendingMovies);  // перевірка
@@ -107,6 +125,7 @@ export const initialData = {
                 this.moviesArrayCurrent = moviesData.results;
                 this.namingGenres(this.moviesArrayCurrent);
                 this.yearsForCard(this.moviesArrayCurrent);
+                this.imgForCard(this.moviesArrayCurrent);
                 this.pagination();
                 // console.log('currentPage(response.data.page):', moviesData.page);    // перевірка на поточну сторінку
                 MOVIES_SET.innerHTML = moviesRender(this.moviesArrayCurrent);
@@ -134,8 +153,10 @@ export const initialData = {
                 this.moviesArrayCurrent = moviesData.results;
                 this.namingGenres(this.moviesArrayCurrent);
                 this.yearsForCard(this.moviesArrayCurrent);
+                this.imgForCard(this.moviesArrayCurrent);
                 this.pagination();
                 // console.log('currentPage(response.data.page):', moviesData.page);    // перевірка на поточну сторінку
+                console.log(this.moviesArrayCurrent)
                 MOVIES_SET.innerHTML = moviesRender(this.moviesArrayCurrent);
                 // console.log('After Fetch - currentFetch is searchMovies:', this.currentFetch === this.searchMovies);  // перевірка
                 return moviesData;
