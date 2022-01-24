@@ -15,14 +15,16 @@
     <!-- Так добавляются фрагменты в главные HTML-файлы страниц. -->
 
     <!-- <include src="./partials/form.html"></include> -->
-    <include src="./partials/header.html"></include>
-    <main>
-      <include src="./partials/container.html"></include>
-      <include src="./partials/pagination.html"></include>
-      <include src="./partials/modal-card.html"></include>
-      <include src="./partials/pretest-localstorage.html"></include>
-    </main>
-    <include src="./partials/footer.html"></include>
+    <div class="page">
+      <include src="./partials/header.html"></include>
+      <main>
+        <include src="./partials/container.html"></include>
+        <include src="./partials/pagination.html"></include>
+        <include src="./partials/modal-card.html"></include>
+        <include src="./partials/pretest-localstorage.html"></include>
+      </main>
+      <include src="./partials/footer.html"></include>
+    </div>
     <!-- Скрипт идёт последним в разметке. В нём уже подключен главный SASS-файл. -->
     <script src="./index.js"></script>
   </body>
