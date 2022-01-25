@@ -3,8 +3,6 @@ import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 
 import moviesRender from '../hbs/render.hbs';
-import FetchServise from './servisesAPI.js';
-const fetchServise = new FetchServise();
 
 const paginationEl = document.getElementById('pagination');
 const galleryEl = document.querySelector('.section-movies__set');

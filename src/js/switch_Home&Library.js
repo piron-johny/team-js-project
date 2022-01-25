@@ -24,7 +24,7 @@ const renderMyLibarary = event => {
 const renderHome = event => {
   event.preventDefault();
   initialData.page = 1;
-  initialData.trendingMovies();
+  initialData.firstRequest();
   paginationEl.classList.remove('hidden');
   emptyLibraryMessage.textContent = '';
 };
