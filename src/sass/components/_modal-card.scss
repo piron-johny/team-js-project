@@ -11,6 +11,7 @@
   width: 100%;
   height: 100%;
   overflow-y: scroll;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   body.dark-theme & {
     background-color: rgba(255, 255, 255, 0.25);
   }
@@ -24,6 +25,7 @@
   min-width: 280px;
   min-height: 958px;
   padding: 48px 20px 40px 20px;
+  
   body.dark-theme & {
     background-color: #e1e1e1;
   }
