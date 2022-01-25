@@ -19,11 +19,8 @@
   }
 }
 .modal {
-  position: absolute;
-  width: 90%;
-  top: 20px;
-  left: 50%;
-  transform: translate(-50%, 0);
+  position: relative;
+  margin: 20px;
   min-width: 280px;
   min-height: 958px;
   padding: 48px 20px 40px 20px;
@@ -35,22 +32,27 @@
   }
   z-index: 100;
   @include respond-to(mobile) {
+    left: 50%;
+    transform: translate(-50%, 0);
     min-width: 0;
-    min-height: 958px;
-    width: 280px;
+    min-height: 0;
+    max-height: 958px;
+    max-width: 280px;
   }
   @include respond-to(tablet) {
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin: 0;
     top: 237px;
-    padding: 40px 30px 40px 30px;
-    min-height: 0;
-    width: 618px;
-    height: 562px;
+    padding: 40px 30px;
+    max-width: 618px;
+    max-height: 562px;
   }
   @include respond-to(desktop) {
     top: 100px;
     padding: 50px 30px 40px 30px;
-    width: 882px;
-    height: 568px;
+    max-width: 882px;
+    max-height: 568px;
   }
 }
 .modal__card {
@@ -64,7 +66,6 @@
   right: 10px;
   width: 30px;
   height: 30px;
-  // background-color: getColor('header-text');
   background-color: transparent;
   border: none;
   cursor: pointer;
