@@ -22,7 +22,6 @@ function createSecondHeader() {
 }
 
 function createFirstHeader() {
-    
     libraryBtn.classList.remove("button-nav--current");
     homeBtn.classList.add("button-nav--current");
 
@@ -31,4 +30,7 @@ function createFirstHeader() {
 
     pageHeaderEl.classList.remove("page-header__library");
     pageHeaderEl.classList.add("page-header");
+
+    document.querySelector('[name="search"]').value = "";
+
 }
