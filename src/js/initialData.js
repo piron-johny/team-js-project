@@ -74,6 +74,7 @@ export const initialData = {
         movie.genresForCard.length = 3;
         movie.genresForCard[2] = 'Others';
       }
+      movie.genresString = movie.genres.join(', ');
       return;
     });
   },
