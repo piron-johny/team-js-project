@@ -11,7 +11,6 @@ const fetchTypeArray = [...document.querySelectorAll('input[name=fetch_type]')];
 const mediaTypeArray = [...document.querySelectorAll('input[name=media_type]')];
 const timeWindowArray = [...document.querySelectorAll('input[name=time_window]')];
 const sortBy = [...document.querySelectorAll('input[name=sort_by]')];
-const queryInput = document.querySelector('.search__input');
     
 let fetchTypeParam = '';
 let mediaTypeParam = '';
@@ -49,8 +48,8 @@ fetchParamsForFirstLoad();
 const changeLanguage = () => {
     language.forEach(item => {
         if (!item.checked) return;
+        initialData.params.page = 1;
         initialData.params.language = item.value;
-        console.log(initialData.params.language);
         fetchParams.textContent = 'fetchParams: ?' + Object.entries(initialData.params).map(array => array.join('=')).join('&');
         initialData.request();
         return;
@@ -62,9 +61,9 @@ const fetchTypeSave = () => {
         if (!item.checked) return;
         if (item.value === 'trending') {
             document.querySelector('.time_window').classList.remove('is-none');
-            document.querySelector('.search').classList.add('is-none');
             document.querySelector('.sort_by').classList.add('is-none');
             fetchTypeParam = item.value;
+            initialData.params.page = 1;
             delete initialData.params.query;
             delete initialData.params.sort_by;
             pathParams.textContent = `pathParams: /${fetchTypeParam}/${mediaTypeParam}/${timeWindowParam}/`;
@@ -74,27 +73,28 @@ const fetchTypeSave = () => {
             initialData.request();
             return;
         };
-        if (item.value === 'search') {
-            initialData.params.query = queryInput.value;
-            document.querySelector('.time_window').classList.add('is-none');
-            document.querySelector('.search').classList.remove('is-none');
-            document.querySelector('.sort_by').classList.add('is-none');
-            fetchTypeParam = item.value;
-            delete initialData.params.sort_by;
-            fetchURL.textContent = `fetchURL: ${initialData.baseURL}${fetchTypeParam}/${mediaTypeParam}/`;
-            pathParams.textContent = `pathParams: /${fetchTypeParam}/${mediaTypeParam}/`;
-            fetchParams.textContent = 'fetchParams: ?' + Object.entries(initialData.params).map(array => array.join('=')).join('&');
-            initialData.url = `${fetchTypeParam}/${mediaTypeParam}`;
-            initialData.request();
-            return;
-        };
+        // if (item.value === 'search') {
+        //     initialData.params.query = queryInput.value;
+        //     document.querySelector('.time_window').classList.add('is-none');
+        //     document.querySelector('.search').classList.remove('is-none');
+        //     document.querySelector('.sort_by').classList.add('is-none');
+        //     fetchTypeParam = item.value;
+        //     initialData.params.page = 1;
+        //     delete initialData.params.sort_by;
+        //     fetchURL.textContent = `fetchURL: ${initialData.baseURL}${fetchTypeParam}/${mediaTypeParam}/`;
+        //     pathParams.textContent = `pathParams: /${fetchTypeParam}/${mediaTypeParam}/`;
+        //     fetchParams.textContent = 'fetchParams: ?' + Object.entries(initialData.params).map(array => array.join('=')).join('&');
+        //     initialData.url = `${fetchTypeParam}/${mediaTypeParam}`;
+        //     initialData.request();
+        //     return;
+        // };
         if (item.value === 'discover') {
             sortBy.forEach(item => {
                 if (!item.checked) return;
+                initialData.params.page = 1;
                 initialData.params.sort_by = item.value;
             })
             document.querySelector('.time_window').classList.add('is-none');
-            document.querySelector('.search').classList.add('is-none');
             document.querySelector('.sort_by').classList.remove('is-none');
             fetchTypeParam = item.value;
             delete initialData.params.query;
@@ -123,13 +123,13 @@ const mediaTypeSave = () => {
             initialData.request();
             return;
         };
-        if (item.value === 'search') {
-            fetchURL.textContent = `fetchURL: ${initialData.baseURL}${fetchTypeParam}/${mediaTypeParam}/`;
-            pathParams.textContent = `pathParams: /${fetchTypeParam}/${mediaTypeParam}/`;
-            initialData.url = `${fetchTypeParam}/${mediaTypeParam}`;
-            initialData.request();
-            return;
-        };
+        // if (item.value === 'search') {
+        //     fetchURL.textContent = `fetchURL: ${initialData.baseURL}${fetchTypeParam}/${mediaTypeParam}/`;
+        //     pathParams.textContent = `pathParams: /${fetchTypeParam}/${mediaTypeParam}/`;
+        //     initialData.url = `${fetchTypeParam}/${mediaTypeParam}`;
+        //     initialData.request();
+        //     return;
+        // };
         if (item.value === 'discover') {
             fetchURL.textContent = `fetchURL: ${initialData.baseURL}${fetchTypeParam}/${mediaTypeParam}/`;
             pathParams.textContent = `pathParams: /${fetchTypeParam}/${mediaTypeParam}/`;
@@ -157,11 +157,9 @@ const contentSortBy = () => {
     sortBy.forEach(item => {
         if (!item.checked) return;
         initialData.params.sort_by = item.value;
-        console.log(initialData.params);
         fetchURL.textContent = `fetchURL: ${initialData.baseURL}${fetchTypeParam}/${mediaTypeParam}/`;
         pathParams.textContent = `pathParams: /${fetchTypeParam}/${mediaTypeParam}/`;
         initialData.url = `${fetchTypeParam}/${mediaTypeParam}/`;
-        console.log(initialData.url);
         fetchParams.textContent = 'fetchParams: ?' + Object.entries(initialData.params).map(array => array.join('=')).join('&');
         initialData.request();
         return;
