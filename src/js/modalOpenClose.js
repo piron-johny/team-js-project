@@ -7,6 +7,8 @@ const btnCloseModal = document.querySelector('[data-modal-close]');
 const backdropModalEl = document.querySelector('[data-backdrop]');
 const cardOpenModal = document.querySelector('.section-movies__set');
 const modalEl = document.querySelector('.modal__card');
+const emptyLibraryMessage = document.querySelector('.empty-library');
+const paginationEl = document.getElementById('pagination');
 
 cardOpenModal.addEventListener('click', onModalOpen);
 btnCloseModal.addEventListener('click', onModalClose);
@@ -20,6 +22,7 @@ function onModalOpen(e) {
   const currentTarget = e.currentTarget;
 
   const temp = (target, currentTarget) => {
+    if (target === cardOpenModal) return;
     if (target.parentElement === currentTarget) {
       backdropModalEl.classList.remove('is-hidden');
       body.style.overflow = 'hidden';
@@ -43,12 +46,11 @@ function onModalOpen(e) {
           filmsWatchedArr = filmsWatchedArr.filter(el => el.id !== modalFilm.id);
           if (filmsWatchedArr.length === 0) {
             cardOpenModal.innerHTML = '';
-            const listItem = document.createElement('li');
-            listItem.classList.add('main__noFilmsInList');
-            listItem.textContent = 'You do not have watched movies. Add them.';
-            cardOpenModal.append(listItem);
+            emptyLibraryMessage.textContent = 'You do not have watched movies. Add them.';
+            paginationEl.classList.add('hidden');
           } else {
             cardOpenModal.innerHTML = moviesRender(filmsWatchedArr);
+            emptyLibraryMessage.textContent = '';
           }
         } else {
           filmsWatchedArr.push(modalFilm);
@@ -77,12 +79,11 @@ function onModalOpen(e) {
           filmsQueueArr = filmsQueueArr.filter(el => el.id !== modalFilm.id);
           if (filmsQueueArr.length === 0) {
             cardOpenModal.innerHTML = '';
-            const listItem = document.createElement('li');
-            listItem.classList.add('main__noFilmsInList');
-            listItem.textContent = 'You do not have watched movies. Add them.';
-            cardOpenModal.append(listItem);
+            emptyLibraryMessage.textContent = 'You do not have to queue movies to watch. Add them.';
+            paginationEl.classList.add('hidden');
           } else {
             cardOpenModal.innerHTML = moviesRender(filmsQueueArr);
+            emptyLibraryMessage.textContent = '';
           }
         } else {
           filmsQueueArr.push(modalFilm);
