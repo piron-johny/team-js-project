@@ -175,14 +175,15 @@ export const initialData = {
         MOVIES_SET.innerHTML = moviesRender(this.moviesArrayCurrent);
         // console.log('After Fetch - currentFetch is searchMovies:', this.currentFetch === this.searchMovies);  // перевірка
         return moviesData;
-      })
+      }) 
       .then(moviesData => {
         if (moviesData.total_results === 0) {
           notification.style.display = 'block';
-          paginationEl.classList.add('hidden');
+            this.trendingMovies();
+            //   paginationEl.classList.add('hidden');
           setTimeout(() => {
             notification.style.display = 'none';
-            this.trendingMovies();
+            document.querySelector('[name="search"]').value = "";
           }, 5000);
         }
       })
