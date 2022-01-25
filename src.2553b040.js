@@ -105,4 +105,4 @@ const e={LIGHT:"light-theme",DARK:"dark-theme"};null!==localStorage.getItem("the
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/pagination.js"),require("./js/movies"),require("./js/header"),require("./js/switch_Home&Library"),require("./js/modalOpenClose"),require("./js/searchMovies"),require("./js/initialData"),require("./js/team-list"),require("./js/selectReqest"),require("./js/dark-light");
 },{"./sass/main.scss":"clu1","./js/pagination.js":"o8lo","./js/movies":"GsTD","./js/header":"cGsR","./js/switch_Home&Library":"HSbX","./js/modalOpenClose":"oBvs","./js/searchMovies":"KyDk","./js/initialData":"satZ","./js/team-list":"hc5w","./js/selectReqest":"cuzA","./js/dark-light":"PFtz"}]},{},["Focm"], null)
-//# sourceMappingURL=/team-js-project/src.f5ef7fe3.js.map
+//# sourceMappingURL=/team-js-project/src.2553b040.js.map
