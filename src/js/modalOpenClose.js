@@ -27,7 +27,9 @@ function onModalOpen(e) {
       backdropModalEl.classList.remove('is-hidden');
       body.style.overflow = 'hidden';
 
-      const findId = +target.id;
+        const findId = +target.id;
+        console.log(target)
+        console.log(target.id)
       const modalFilm = initialData.moviesArrayCurrent.find(film => film.id === findId);
       modalEl.insertAdjacentHTML('beforeend', modalRender(modalFilm));
 
