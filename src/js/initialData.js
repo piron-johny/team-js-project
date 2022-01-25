@@ -184,7 +184,7 @@ export const initialData = {
           setTimeout(() => {
             notification.style.display = 'none';
             document.querySelector('[name="search"]').value = "";
-          }, 5000);
+          }, 3000);
         }
       })
       .catch(); // дописати error
