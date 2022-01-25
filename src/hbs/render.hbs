@@ -1,6 +1,6 @@
 {{#each this}}
-  <li class="section-movies__card" id={{id}}>
-    <a href="#" class="movies-card__link">
+  <li class="section-movies__card" id={{id}} >
+    <div class="movies-card__box" tabindex="0">
       <div class="movies-card__img-thumb">
         <img
         {{#if poster_path}}
@@ -41,7 +41,7 @@
         <div class="rating rating--is-hidden">{{vote_average}}</div>
         </div>
       </div>
-    </a>
+    </div>
   </li>
 {{/each}}
 
