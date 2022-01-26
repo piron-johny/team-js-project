@@ -3,6 +3,7 @@ import { initialData } from './initialData';
 import { optionsWatched, optionsQueue, renderWatched, renderQueue } from './pagination';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+import { changeTimeWindow } from './trending';
 
 const logo = document.querySelector('.page-header__logo');
 const btnHome = document.querySelector('#home');
@@ -28,8 +29,8 @@ const renderMyLibarary = event => {
 };
 const renderHome = event => {
   event.preventDefault();
-  initialData.page = 1;
-  initialData.firstRequest();
+    initialData.params.page = 1;
+    changeTimeWindow();
   paginationEl.classList.remove('hidden');
   emptyLibraryMessage.textContent = '';
 };

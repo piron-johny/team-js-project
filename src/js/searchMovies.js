@@ -12,11 +12,9 @@ const searchList = document.querySelector('.search-list');
 
 input.addEventListener('focus', () => {
     searchType.checked = 'true';
-    document.querySelector('.time_window').classList.add('is-none');
-    document.querySelector('.sort_by').classList.add('is-none');
-    let fetchTypeParam = searchType.value;
+    initialData.fetchTypeCurrent = searchType.value;
     delete initialData.params.sort_by;
-    initialData.url = `${fetchTypeParam}/movie`;    // переписати на динамічне підтягнення movie
+    initialData.url = `${initialData.fetchTypeCurrent}/${initialData.mediaTypeCurrent}`;
     return;
 });
 
@@ -34,7 +32,6 @@ const searchMovies = event => {
     initialData.request()
         .then(data => {
             if (initialData.totalResults === 0) {
-                console.log(initialData.totalResults)
                 //   paginationEl.classList.add('hidden');
                 setTimeout(() => {
                     notification.style.display = 'none';
@@ -54,7 +51,7 @@ input.addEventListener("input", debounce(searchMovies, DEBOUNCE_DELAY));
 //   el.preventDefault();
 // //   const inputValue = input.value.trim().toLowerCase();
 // //   if (inputValue === '') {
-// //   initialData.request();
+// //   initialData.initialData.request();
       
 // //     };
     
