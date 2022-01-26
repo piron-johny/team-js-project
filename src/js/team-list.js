@@ -6,6 +6,7 @@ const arrowTop = document.querySelector('.arrowTop');
 const header = document.querySelector('header');
 const debounce = require('lodash.debounce');
 import teamMarkup from '../hbs/team-list.hbs';
+import teamImg from '../images/team/*.*'
 
 link.addEventListener('click', onOpenTeamList);
 window.addEventListener('scroll', debounce(onFetchToScroll, 150));
@@ -18,7 +19,7 @@ function onOpenTeamList(e) {
   modalEl.style.display = 'flex';
   modalCartEl.style.flex = '1 1 100%';
   backdropModalEl.classList.remove('is-hidden');
-  modalCartEl.innerHTML = teamMarkup();
+  modalCartEl.innerHTML = teamMarkup(teamImg);
 
   const nameList = document.querySelectorAll('.name__item span');
   const descriptionList = document.querySelectorAll('.description__item');
@@ -48,3 +49,5 @@ function onScrollUp(e) {
     block: 'start',
   });
 }
+
+
