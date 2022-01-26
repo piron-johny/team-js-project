@@ -29,8 +29,10 @@ const renderMyLibarary = event => {
 };
 const renderHome = event => {
   event.preventDefault();
-    initialData.params.page = 1;
-    changeTimeWindow();
+  // localStorage.setItem('location', 'home');
+  initialData.firstRequest();
+  initialData.params.page = 1;
+  changeTimeWindow();
   paginationEl.classList.remove('hidden');
   emptyLibraryMessage.textContent = '';
 };
@@ -57,17 +59,17 @@ function renderWatchedFilmList() {
     JSON.parse(watchedFilmListFromLS).length !== 0 &&
     JSON.parse(watchedFilmListFromLS).length >= 20
   ) {
-    paginationEl.classList.remove('hidden');
-    const pagination = new Pagination(paginationEl, optionsWatched);
-    renderWatched();
-    pagination.on('afterMove', eData => {
-      currentPage = eData.page;
-      let start = 20 * (currentPage - 1);
-      let end = 20 * currentPage;
-      renderWatched(start, end);
-      return;
-    });
-    // moviesSet.insertAdjacentHTML('afterbegin', moviesRender(JSON.parse(watchedFilmListFromLS)));
+    paginationEl.classList.add('hidden');
+    // const pagination = new Pagination(paginationEl, optionsWatched);
+    // renderWatched();
+    // pagination.on('afterMove', eData => {
+    //   currentPage = eData.page;
+    //   let start = 20 * (currentPage - 1);
+    //   let end = 20 * currentPage;
+    //   renderWatched(start, end);
+    //   return;
+    // });
+    moviesSet.insertAdjacentHTML('afterbegin', moviesRender(JSON.parse(watchedFilmListFromLS)));
     emptyLibraryMessage.textContent = '';
   } else if (watchedFilmListFromLS === null || JSON.parse(watchedFilmListFromLS).length === 0) {
     moviesSet.innerHTML = '';
@@ -104,19 +106,19 @@ function renderQueuedFilmList() {
     JSON.parse(queueFilmListFromLS).length !== 0 &&
     JSON.parse(queueFilmListFromLS).length >= 20
   ) {
-    paginationEl.classList.remove('hidden');
-    const pagination = new Pagination(paginationEl, optionsQueue);
-    renderQueue();
-    pagination.on('afterMove', eData => {
-      currentPage = eData.page;
-      console.log(currentPage);
-      let start = 20 * (currentPage - 1);
-      let end = 20 * currentPage;
-      renderQueue(start, end);
-      return;
-    });
-    // moviesSet.insertAdjacentHTML('afterbegin', moviesRender(JSON.parse(queueFilmListFromLS)));
-    // paginationEl.classList.add('hidden');
+    // paginationEl.classList.remove('hidden');
+    // const pagination = new Pagination(paginationEl, optionsQueue);
+    // renderQueue();
+    // pagination.on('afterMove', eData => {
+    //   currentPage = eData.page;
+    //   console.log(currentPage);
+    //   let start = 20 * (currentPage - 1);
+    //   let end = 20 * currentPage;
+    //   renderQueue(start, end);
+    //   return;
+    // });
+    moviesSet.insertAdjacentHTML('afterbegin', moviesRender(JSON.parse(queueFilmListFromLS)));
+    paginationEl.classList.add('hidden');
     emptyLibraryMessage.textContent = '';
     // paginationEl.classList.remove('hidden');
     // initialData.pagination();
