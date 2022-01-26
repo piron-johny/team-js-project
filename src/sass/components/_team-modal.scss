@@ -3,6 +3,12 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  @include respond-to(mobile) {
+    height: 900px;
+  }
+  @include respond-to(tablet) {
+    height: 100%;
+  }
 }
 .team-list__name {
   width: 25%;
@@ -46,10 +52,13 @@
 
   &.active {
     transition: color 200ms linear, border 200ms linear, background 300ms linear;
-    background: #e1e1e1;
+    background: #fff;
     color: getColor('accent');
     border-left: 5px solid getColor('accent');
     position: relative;
+    body.dark-theme & {
+      background: #e1e1e1;
+    }
   }
 }
 .description {
@@ -66,8 +75,8 @@
 }
 .description__item {
   position: absolute;
-  height: 500px;
-  top: -75vh;
+  height: 900px;
+  top: -100vh;
   left: 20px;
   opacity: 0;
   padding-right: 20px;
@@ -88,6 +97,8 @@
 }
 
 .description__wrapper {
+  border-radius: 5px;
+  overflow: hidden;
   width: 100%;
   margin-right: 10px;
   margin-bottom: 15px;
@@ -106,11 +117,11 @@
 .description__picture {
   display: block;
   width: 100%;
-  height: 230px;
+  height: 260px;
   background: #eee;
   border-radius: 5px;
-  @include respond-to(tablet) {
-    height: 150px;
+  @include respond-to(mobile) {
+    height: 160px;
   }
   @include respond-to(desktop) {
     height: 220px;
@@ -120,6 +131,9 @@
 .description__text {
   font-size: 16px;
   line-height: 1.5;
+  @include respond-to(mobile) {
+    line-height: 1.1;
+  }
   @include respond-to(tablet) {
     font-size: 18px;
     line-height: 1.2;
