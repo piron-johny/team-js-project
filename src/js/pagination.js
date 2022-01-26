@@ -1,12 +1,13 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import moviesRender from '../hbs/render.hbs';
+import { initialData } from './initialData';
 
 const paginationEl = document.getElementById('pagination');
 const moviesSet = document.querySelector('.section-movies__set');
 
-const filmsWatched = JSON.parse(localStorage.getItem('filmsWatched'));
-const filmsQueue = JSON.parse(localStorage.getItem('filmsQueue'));
+const filmsWatched = JSON.parse(localStorage.getItem('filmsWatched')) || [];
+const filmsQueue = JSON.parse(localStorage.getItem('filmsQueue')) || [];
 
 const optionsWatched = {
   totalItems: filmsWatched.length,
@@ -61,27 +62,49 @@ const optionsQueue = {
   },
 };
 
-// const pagination = new Pagination(paginationEl, options);
-// let countOfItems = Math.ceil(DATA.length / options.itemsPerPage);
-// console.log(countOfItems);
-// pagination.getCurrentPage();
+const paginationWatched = new Pagination(paginationEl, optionsWatched);
+const paginationQueue = new Pagination(paginationEl, optionsWatched);
+paginationWatched.getCurrentPage();
+
 function renderWatched(start = 0, end = 20) {
-  const markupArray = [...filmsWatched];
+  initialData.moviesArrayCurrent = JSON.parse(localStorage.getItem('filmsWatched')) || [];
+
   moviesSet.innerHTML = '';
-  return moviesSet.insertAdjacentHTML('afterbegin', moviesRender(markupArray.slice(start, end)));
-}
-function renderQueue(start = 0, end = 20) {
-  const markupArray = [...filmsQueue];
-  moviesSet.innerHTML = '';
-  return moviesSet.insertAdjacentHTML('afterbegin', moviesRender(markupArray.slice(start, end)));
+  // initialData.moviesArrayCurrent = markupArray.slice(start, end);
+  return moviesSet.insertAdjacentHTML(
+    'afterbegin',
+    moviesRender(initialData.moviesArrayCurrent).slice(start, end),
+  );
 }
 
-// pagination.on('afterMove', eData => {
-//   currentPage = eData.page;
-//   let start = 20 * (currentPage - 1);
-//   let end = 20 * currentPage;
-//   render(start, end);
-//   return;
-// });
+function renderQueue(start = 0, end = 20) {
+  moviesSet.innerHTML = '';
+  moviesArrayCurrent = markupArray.slice(start, end);
+  return moviesSet.insertAdjacentHTML('afterbegin', moviesRender(initialData.moviesArrayCurrent));
+}
+
+paginationWatched.on('afterMove', eData => {
+  currentPage = eData.page;
+  let start = 20 * (currentPage - 1);
+  let end = 20 * currentPage;
+
+  if (localStorage.get('location') === 'library-watched') {
+    renderWatched(start, end);
+  }
+
+  return;
+});
+
+paginationQueue.on('afterMove', eData => {
+  currentPage = eData.page;
+  let start = 20 * (currentPage - 1);
+  let end = 20 * currentPage;
+
+  if (localStorage.get('location') === 'library-queued') {
+    renderQueue(start, end);
+  }
+
+  return;
+});
 
 export { optionsWatched, optionsQueue, filmsWatched, renderWatched, filmsQueue, renderQueue };

@@ -1,0 +1,67 @@
+<section class='select is-none'>
+  <div class='container'>
+    <button class='open'>РОЗГОРНУТИ</button>
+    <form action='' class='select__form'>
+      {{#each languages}}
+        <input
+          id={{this}}
+          type='radio'
+          name='language'
+          value={{this}}
+          class='select__input visually-hidden'
+        />
+        <label for={{this}} class='select__label'>{{this}}</label>
+      {{/each}}
+    </form>
+    <form action='' class='select__form'>
+      {{#each mediaTypes}}
+        <input
+          id={{this}}
+          type='radio'
+          name='mediaType'
+          value={{this}}
+          class='select__input visually-hidden'
+        />
+        <label for={{this}} class='select__label'>{{this}}</label>
+      {{/each}}
+    </form>
+    <form action='' class='select__form'>
+      {{#each fetchTypes}}
+        <input
+          id={{this}}
+          type='radio'
+          name='fetchType'
+          value={{this}}
+          class='select__input visually-hidden'
+        />
+        <label for={{this}} class='select__label'>{{this}}</label>
+      {{/each}}
+    </form>
+    <form action='' class='select__form'>
+      {{#each timeWindows}}
+        <input
+          id={{this}}
+          type='radio'
+          name='timeWindow'
+          value={{this}}
+          class='select__input visually-hidden'
+        />
+        <label for={{this}} class='select__label'>{{this}}</label>
+      {{/each}}
+    </form>
+    <form action='' class='select__form'>
+      Sort by
+      {{#each sortBys}}
+        <input
+          id={{this}}
+          type='radio'
+          name='sortBy'
+          value={{this}}
+          class='select__input visually-hidden'
+        />
+        <label for={{this}} class='select__label'>{{this}}</label>
+      {{/each}}
+    </form>
+    <button class='close is-none'>ЗГОРНУТИ</button>
+  </div>
+</section>
