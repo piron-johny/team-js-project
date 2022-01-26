@@ -24,7 +24,7 @@ const renderMyLibarary = event => {
 const renderHome = event => {
   event.preventDefault();
   initialData.page = 1;
-  initialData.firstRequest();
+  initialData.request();
   paginationEl.classList.remove('hidden');
   emptyLibraryMessage.textContent = '';
 };

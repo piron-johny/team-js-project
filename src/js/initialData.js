@@ -2,8 +2,9 @@ import axios from 'axios';
 import moviesRender from '../hbs/render.hbs';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
-// import './select';
+import form from '../hbs/form.hbs';
 
+const main = document.querySelector('main');
 const paginationEl = document.getElementById('pagination');
 
 const addDataToLocalStorage = (localStorageKey, moviesArray) => {
@@ -15,16 +16,32 @@ const MOVIES_SET = document.querySelector('.section-movies__set');
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
-export const initialData = {
-    baseURL: 'https://api.themoviedb.org/3/',
 
-    url: '',
+export const initialData = {
+    url: 'trending/movie/day',
     params: {
         api_key: KEY,
         page: 1,
         language: 'en-US',
     },
 
+    languages: ['en-US', 'uk-UA', 'ru-RU'],
+    mediaTypes: ['movie', 'tv'],
+    fetchTypes: ['trending', 'search', 'discover'],
+    timeWindows: ['day', 'week'],
+    sortBys: [
+        'popularity.asc',
+        'popularity.desc',
+        'release_date.asc',
+        'release_date.desc',
+        'original_title.asc',
+        'original_title.desc',
+        'vote_average.asc',
+        'vote_average.desc',
+        'vote_count.asc',
+        'vote_count.desc',
+    ],
+    
     totalResults: 0,
     moviesArrayCurrent: [],
     currentPageStatus: 'fetch',
@@ -108,31 +125,13 @@ export const initialData = {
             .catch(); // дописати error
     },
 
-    async firstRequest() {
-        this.url = 'trending/movie/day';
-        this.params = {
-            api_key: KEY,
-            page: 1,
-            language: 'en-US',
-        };
-        this.request();
-    },
-
-  addMoviesToWatched() {},
-
-  removeMoviesFromWatched() {},
-
-  addMoviesToQueue() {},
-
-  removeMoviesFromQueue() {},
-
     async firstLoadingPage() {
         try {
             await this.genresList();
-            await this.firstRequest();
+            await this.request();
         } catch {}
     },
-
+    
     pagination() {
         const options = {
             totalItems: this.totalResults,
@@ -167,6 +166,8 @@ export const initialData = {
             this.request();
         });
     },
+
 };
 
+main.insertAdjacentHTML('afterbegin', form(initialData));
 initialData.firstLoadingPage();

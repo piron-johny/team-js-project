@@ -1,4 +1,5 @@
 import { initialData } from "./initialData";
+import { mediaTypeParam } from "./changeMediaType";
 const notification = document.querySelector('.change-block__notification');
 
 
@@ -8,11 +9,9 @@ const searchType = document.querySelector('#search');
 
 input.addEventListener('focus', () => {
     searchType.checked = 'true';
-    document.querySelector('.time_window').classList.add('is-none');
-    document.querySelector('.sort_by').classList.add('is-none');
     let fetchTypeParam = searchType.value;
     delete initialData.params.sort_by;
-    initialData.url = `${fetchTypeParam}/movie`;    // переписати на динамічне підтягнення movie
+    initialData.url = `${fetchTypeParam}/${mediaTypeParam}`;    // переписати на динамічне підтягнення movie
     return;
 });
 
