@@ -28,8 +28,8 @@ function onModalOpen(e) {
       body.style.overflow = 'hidden';
 
         const findId = +target.id;
-        console.log(target)
-        console.log(target.id)
+        // console.log(target)
+        // console.log(target.id)
       const modalFilm = initialData.moviesArrayCurrent.find(film => film.id === findId);
       modalEl.insertAdjacentHTML('beforeend', modalRender(modalFilm));
 
@@ -46,17 +46,31 @@ function onModalOpen(e) {
         }
         if (filmsWatchedArr.find(el => el.id === modalFilm.id)) {
           filmsWatchedArr = filmsWatchedArr.filter(el => el.id !== modalFilm.id);
-          if (filmsWatchedArr.length === 0) {
-            cardOpenModal.innerHTML = '';
-            emptyLibraryMessage.textContent = 'You do not have watched movies. Add them.';
-            paginationEl.classList.add('hidden');
-          } else {
-            cardOpenModal.innerHTML = moviesRender(filmsWatchedArr);
-            emptyLibraryMessage.textContent = '';
+          
+          if (localStorage.getItem("location") == 'name') {
+              if (filmsWatchedArr.length === 0) {
+                cardOpenModal.innerHTML = '';
+                emptyLibraryMessage.textContent = 'You do not have watched movies. Add them.';
+                paginationEl.classList.add('hidden');
+              } else {
+                  cardOpenModal.innerHTML = moviesRender(filmsWatchedArr);
+                  emptyLibraryMessage.textContent = '';
+              }
+              } else if (localStorage.getItem("location") == 'library-watched') {
+                          if (filmsWatchedArr.length === 0) {
+                cardOpenModal.innerHTML = '';
+                emptyLibraryMessage.textContent = 'You do not have watched movies. Add them.';
+                paginationEl.classList.add('hidden');
+              } else {
+                  cardOpenModal.innerHTML = moviesRender(filmsWatchedArr);
+                  emptyLibraryMessage.textContent = '';
+              }
+
           }
         } else {
           filmsWatchedArr.push(modalFilm);
         }
+        
         localStorage.setItem('filmsWatched', JSON.stringify(filmsWatchedArr));
 
         monitorButtonStatusTextWatched();
@@ -64,11 +78,17 @@ function onModalOpen(e) {
 
       function monitorButtonStatusTextWatched() {
         let localStorageFilmsWatched = localStorage.getItem('filmsWatched');
-        localStorageFilmsWatched === null
-          ? (btnWatched.textContent = 'Add to watched')
-          : JSON.parse(localStorageFilmsWatched).find(el => el.id === modalFilm.id)
-          ? (btnWatched.textContent = 'Delete from watched')
-          : (btnWatched.textContent = 'Add to watched');
+        if(localStorageFilmsWatched === null){
+          btnWatched.textContent = 'Add to watched'
+        }
+        else if(JSON.parse(localStorageFilmsWatched).find(el => el.id === modalFilm.id)){
+          btnWatched.textContent = 'Delete from watched'
+          btnWatched.classList.add('btn__active')
+        }
+        else{
+          btnWatched.textContent = 'Add to watched'
+          btnWatched.classList.remove('btn__active')
+        }
       }
 
       btnQueued.addEventListener('click', () => {
@@ -79,14 +99,27 @@ function onModalOpen(e) {
         }
         if (filmsQueueArr.find(el => el.id === modalFilm.id)) {
           filmsQueueArr = filmsQueueArr.filter(el => el.id !== modalFilm.id);
-          if (filmsQueueArr.length === 0) {
-            cardOpenModal.innerHTML = '';
-            emptyLibraryMessage.textContent = 'You do not have to queue movies to watch. Add them.';
-            paginationEl.classList.add('hidden');
-          } else {
-            cardOpenModal.innerHTML = moviesRender(filmsQueueArr);
-            emptyLibraryMessage.textContent = '';
+
+           if (localStorage.getItem("location") == 'name') {
+              if (filmsQueueArr.length === 0) {
+                cardOpenModal.innerHTML = '';
+                emptyLibraryMessage.textContent = 'You do not have watched movies. Add them.';
+                paginationEl.classList.add('hidden');
+              } else {
+                  cardOpenModal.innerHTML = moviesRender(filmsQueueArr);
+                  emptyLibraryMessage.textContent = '';
+              }
+              } else if (localStorage.getItem("location") == 'library-queued') {
+                          if (filmsQueueArr.length === 0) {
+                cardOpenModal.innerHTML = '';
+                emptyLibraryMessage.textContent = 'You do not have watched movies. Add them.';
+                paginationEl.classList.add('hidden');
+              } else {
+                  cardOpenModal.innerHTML = moviesRender(filmsQueueArr);
+                  emptyLibraryMessage.textContent = '';
+              }
           }
+
         } else {
           filmsQueueArr.push(modalFilm);
         }
@@ -95,11 +128,17 @@ function onModalOpen(e) {
       });
       function monitorButtonStatusTextQueue() {
         let localStorageFilmsQueue = localStorage.getItem('filmsQueue');
-        localStorageFilmsQueue === null
-          ? (btnQueued.textContent = 'Add to queue')
-          : JSON.parse(localStorageFilmsQueue).find(el => el.id === modalFilm.id)
-          ? (btnQueued.textContent = 'Delete from queue')
-          : (btnQueued.textContent = 'Add to queue');
+        if(localStorageFilmsQueue === null){
+          btnQueued.textContent = 'Add to queue'
+        }
+        else if(JSON.parse(localStorageFilmsQueue).find(el => el.id === modalFilm.id)){
+          btnQueued.textContent = 'Delete from queue'
+          btnQueued.classList.add('btn__active')
+        }
+        else{
+          btnQueued.textContent = 'Add to queue'
+          btnQueued.classList.remove('btn__active')
+        }
       }
       return;
     }

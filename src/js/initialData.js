@@ -25,6 +25,10 @@ export const initialData = {
         language: 'en-US',
     },
 
+    mediaTypeCurrent: 'movie',
+    fetchTypeCurrent: 'trending',
+    timeWindowCurrent: 'day',
+
     languages: ['en-US', 'uk-UA', 'ru-RU'],
     mediaTypes: ['movie', 'tv'],
     fetchTypes: ['trending', 'search', 'discover'],
@@ -52,6 +56,7 @@ export const initialData = {
     moviesArrayWatched: JSON.parse(localStorage.getItem('Watched')) || [],
     moviesArrayQueue: JSON.parse(localStorage.getItem('Queued')) || [],
     genresArray: [],    // видалити після зміни запиту на жанри
+    // location: '',
 
     async genresList() {
         await axios.get(
@@ -124,6 +129,27 @@ export const initialData = {
             })
             .catch(); // дописати error
     },
+
+    async firstRequest() {
+        this.url = 'trending/movie/day';
+        this.params = {
+            api_key: KEY,
+            page: 1,
+            language: 'en-US',
+        };
+        this.request();
+        localStorage.setItem("location", "home");
+        // this.location = 'home';
+        // console.log(this.location);
+    },
+
+  addMoviesToWatched() {},
+
+  removeMoviesFromWatched() {},
+
+  addMoviesToQueue() {},
+
+  removeMoviesFromQueue() {},
 
     async firstLoadingPage() {
         try {
