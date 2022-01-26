@@ -1,8 +1,8 @@
 import axios from 'axios';
 import moviesRender from '../hbs/render.hbs';
-import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.css';
 import form from '../hbs/form.hbs';
+
+import { options, pagination } from './pagination__2';      // !!!!!!!!!!!
 
 const main = document.querySelector('main');
 const paginationEl = document.getElementById('pagination');
@@ -121,10 +121,12 @@ export const initialData = {
                 const moviesData = response.data;
                 this.totalResults = moviesData.total_results;
                 this.moviesArrayCurrent = moviesData.results;
+                options.totalItems = moviesData.total_results;       // !!!!!!!!!!!
+                options.page = moviesData.page;       // !!!!!!!!!!!
                 this.namingGenres(this.moviesArrayCurrent);
                 this.yearsForCard(this.moviesArrayCurrent);
-                this.pagination();
                 MOVIES_SET.innerHTML = moviesRender(this.moviesArrayCurrent);
+                pagination();       // !!!!!!!!!!!
                 return moviesData;
             })
             .catch(); // дописати error
@@ -143,56 +145,12 @@ export const initialData = {
         // console.log(this.location);
     },
 
-  addMoviesToWatched() {},
-
-  removeMoviesFromWatched() {},
-
-  addMoviesToQueue() {},
-
-  removeMoviesFromQueue() {},
-
     async firstLoadingPage() {
         try {
             await this.genresList();
             await this.request();
         } catch {}
     },
-    
-    pagination() {
-        const options = {
-            totalItems: this.totalResults,
-            itemsPerPage: 20,
-            visiblePages: 5,
-            page: this.params.page,
-            centerAlign: true,
-            firstItemClassName: 'tui-first-child',
-            lastItemClassName: 'tui-last-child',
-            usageStatistics: false,
-            template: {
-                page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-                currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-                moveButton:
-                '<a href="#" class="tui-page-btn tui-{{type}}">' +
-                '<span class="tui-ico-{{type}}">{{type}}</span>' +
-                '</a>',
-                disabledMoveButton:
-                '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-                '<span class="tui-ico-{{type}}">{{type}}</span>' +
-                '</span>',
-                moreButton:
-                '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-                '<span class="tui-ico-ellip">...</span>' +
-                '</a>',
-            },
-        };
-        const pagination = new Pagination(paginationEl, options);
-
-        pagination.on('afterMove', eData => {
-            this.params.page = eData.page;
-            this.request();
-        });
-    },
-
 };
 
 main.insertAdjacentHTML('afterbegin', form(initialData));

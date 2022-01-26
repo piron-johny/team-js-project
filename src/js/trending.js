@@ -10,7 +10,7 @@ const timeWindowInputsArray = initialData.timeWindows.map(timeWindow => {
 trendingType.checked = 'true';
 timeWindowInputsArray[0].checked = 'true';
 
-const changeTimeWindow = () => {
+export const changeTimeWindow = () => {
     trendingType.checked = 'true';
     initialData.fetchTypeCurrent = trendingType.value;
     initialData.params.page = 1;
