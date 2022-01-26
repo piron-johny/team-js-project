@@ -1,10 +1,14 @@
 import { initialData } from "./initialData";
+import searchListRender from "../hbs/renderSearchList.hbs";
 const notification = document.querySelector('.change-block__notification');
 
 
 const form = document.querySelector('.search-form');
 const input = document.querySelector('[name="search"]');
 const searchType = document.querySelector('#search');
+const debounce = require('lodash.debounce');
+const DEBOUNCE_DELAY = 300;
+const searchList = document.querySelector('.search-list');
 
 input.addEventListener('focus', () => {
     searchType.checked = 'true';
@@ -20,8 +24,11 @@ const searchMovies = event => {
 
   if (initialData.params.query === '') {
     return;
-  };
+    };
+    // searchList.innerHTML = '';
     initialData.params.page = 1;
+    searchList.innerHTML = searchListRender(initialData.moviesArrayCurrent);
+
     initialData.request()
         .then(data => {
             if (initialData.totalResults === 0) {
@@ -30,13 +37,14 @@ const searchMovies = event => {
                     notification.style.display = 'none';
                     input.value = "";
                 }, 3000);
+
                 // дописати завантаження популярних фільмів при відсутності фільмів за пошуком
             }
         return;
     });
 };
 
-form.addEventListener("submit", searchMovies);
+input.addEventListener("input", debounce(searchMovies, DEBOUNCE_DELAY));
 
 
 // const searchReset = el => {
