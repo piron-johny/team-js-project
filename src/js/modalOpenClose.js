@@ -7,9 +7,11 @@ const btnCloseModal = document.querySelector('[data-modal-close]');
 const backdropModalEl = document.querySelector('[data-backdrop]');
 const cardOpenModal = document.querySelector('.section-movies__set');
 const modalEl = document.querySelector('.modal__card');
+const elasticList = document.querySelector('.search-list');
 
 cardOpenModal.addEventListener('click', onModalOpen);
 btnCloseModal.addEventListener('click', onModalClose);
+elasticList.addEventListener('click', onModalOpen);
 
 backdropModalEl.addEventListener('click', onBackdropClick);
 

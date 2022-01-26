@@ -182,6 +182,9 @@ export const initialData = {
                         this.trendingMovies();
                     }, 5000);
                 };
+                // if (moviesData.total_results >= 1) {
+                //     searchList.innerHTML = searchListRender(this.moviesArrayCurrent);
+                // }
             })
             .catch()  // дописати error
     },
