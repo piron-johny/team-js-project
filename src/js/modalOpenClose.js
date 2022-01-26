@@ -78,11 +78,17 @@ function onModalOpen(e) {
 
       function monitorButtonStatusTextWatched() {
         let localStorageFilmsWatched = localStorage.getItem('filmsWatched');
-        localStorageFilmsWatched === null
-          ? (btnWatched.textContent = 'Add to watched')
-          : JSON.parse(localStorageFilmsWatched).find(el => el.id === modalFilm.id)
-          ? (btnWatched.textContent = 'Delete from watched')
-          : (btnWatched.textContent = 'Add to watched');
+        if(localStorageFilmsWatched === null){
+          btnWatched.textContent = 'Add to watched'
+        }
+        else if(JSON.parse(localStorageFilmsWatched).find(el => el.id === modalFilm.id)){
+          btnWatched.textContent = 'Delete from watched'
+          btnWatched.classList.add('btn__active')
+        }
+        else{
+          btnWatched.textContent = 'Add to watched'
+          btnWatched.classList.remove('btn__active')
+        }
       }
 
       btnQueued.addEventListener('click', () => {
@@ -112,7 +118,6 @@ function onModalOpen(e) {
                   cardOpenModal.innerHTML = moviesRender(filmsQueueArr);
                   emptyLibraryMessage.textContent = '';
               }
-
           }
 
         } else {
@@ -123,11 +128,17 @@ function onModalOpen(e) {
       });
       function monitorButtonStatusTextQueue() {
         let localStorageFilmsQueue = localStorage.getItem('filmsQueue');
-        localStorageFilmsQueue === null
-          ? (btnQueued.textContent = 'Add to queue')
-          : JSON.parse(localStorageFilmsQueue).find(el => el.id === modalFilm.id)
-          ? (btnQueued.textContent = 'Delete from queue')
-          : (btnQueued.textContent = 'Add to queue');
+        if(localStorageFilmsQueue === null){
+          btnQueued.textContent = 'Add to queue'
+        }
+        else if(JSON.parse(localStorageFilmsQueue).find(el => el.id === modalFilm.id)){
+          btnQueued.textContent = 'Delete from queue'
+          btnQueued.classList.add('btn__active')
+        }
+        else{
+          btnQueued.textContent = 'Add to queue'
+          btnQueued.classList.remove('btn__active')
+        }
       }
       return;
     }
