@@ -10,8 +10,12 @@ const paginationEl = document.getElementById('pagination');
 const moviesSet = document.querySelector('.section-movies__set');
 const emptyLibraryMessage = document.querySelector('.empty-library');
 
+
+
 const renderMyLibarary = event => {
   event.preventDefault();
+  localStorage.setItem("location", "library-watched");
+  
   moviesSet.innerHTML = moviesRender(initialData.moviesArrayWatched);
   renderWatchedFilmList();
   watchedBtn.classList.add('superactive');
@@ -20,6 +24,9 @@ const renderMyLibarary = event => {
   }
   const rating = document.querySelectorAll('.rating');
   rating.forEach(item => item.classList.remove('rating--is-hidden'));
+
+  
+  
 };
 const renderHome = event => {
   event.preventDefault();
@@ -27,6 +34,7 @@ const renderHome = event => {
   initialData.firstRequest();
   paginationEl.classList.remove('hidden');
   emptyLibraryMessage.textContent = '';
+  
 };
 
 logo.addEventListener('click', renderHome);
@@ -34,7 +42,9 @@ btnHome.addEventListener('click', renderHome);
 btnMyLibrary.addEventListener('click', renderMyLibarary);
 
 function renderWatchedFilmList() {
+  localStorage.setItem("location", "library-watched");
   moviesSet.innerHTML = '';
+  
   let watchedFilmListFromLS = localStorage.getItem('filmsWatched');
   if (
     watchedFilmListFromLS !== null &&
@@ -73,6 +83,7 @@ function renderWatchedFilmList() {
 watchedBtn.addEventListener('click', renderWatchedFilmList);
 
 function renderQueuedFilmList() {
+  localStorage.setItem("location", "library-queued");
   watchedBtn.classList.remove('superactive');
   moviesSet.innerHTML = '';
   let queueFilmListFromLS = localStorage.getItem('filmsQueue');

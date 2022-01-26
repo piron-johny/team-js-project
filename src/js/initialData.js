@@ -35,6 +35,7 @@ export const initialData = {
     moviesArrayWatched: JSON.parse(localStorage.getItem('Watched')) || [],
     moviesArrayQueue: JSON.parse(localStorage.getItem('Queued')) || [],
     genresArray: [],    // видалити після зміни запиту на жанри
+    // location: '',
 
     async genresList() {
         await axios.get(
@@ -116,6 +117,9 @@ export const initialData = {
             language: 'en-US',
         };
         this.request();
+        localStorage.setItem("location", "home");
+        // this.location = 'home';
+        // console.log(this.location);
     },
 
   addMoviesToWatched() {},
@@ -170,3 +174,4 @@ export const initialData = {
 };
 
 initialData.firstLoadingPage();
+

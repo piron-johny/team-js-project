@@ -28,8 +28,8 @@ function onModalOpen(e) {
       body.style.overflow = 'hidden';
 
         const findId = +target.id;
-        console.log(target)
-        console.log(target.id)
+        // console.log(target)
+        // console.log(target.id)
       const modalFilm = initialData.moviesArrayCurrent.find(film => film.id === findId);
       modalEl.insertAdjacentHTML('beforeend', modalRender(modalFilm));
 
@@ -46,17 +46,31 @@ function onModalOpen(e) {
         }
         if (filmsWatchedArr.find(el => el.id === modalFilm.id)) {
           filmsWatchedArr = filmsWatchedArr.filter(el => el.id !== modalFilm.id);
-          if (filmsWatchedArr.length === 0) {
-            cardOpenModal.innerHTML = '';
-            emptyLibraryMessage.textContent = 'You do not have watched movies. Add them.';
-            paginationEl.classList.add('hidden');
-          } else {
-            cardOpenModal.innerHTML = moviesRender(filmsWatchedArr);
-            emptyLibraryMessage.textContent = '';
+          
+          if (localStorage.getItem("location") == 'name') {
+              if (filmsWatchedArr.length === 0) {
+                cardOpenModal.innerHTML = '';
+                emptyLibraryMessage.textContent = 'You do not have watched movies. Add them.';
+                paginationEl.classList.add('hidden');
+              } else {
+                  cardOpenModal.innerHTML = moviesRender(filmsWatchedArr);
+                  emptyLibraryMessage.textContent = '';
+              }
+              } else if (localStorage.getItem("location") == 'library-watched') {
+                          if (filmsWatchedArr.length === 0) {
+                cardOpenModal.innerHTML = '';
+                emptyLibraryMessage.textContent = 'You do not have watched movies. Add them.';
+                paginationEl.classList.add('hidden');
+              } else {
+                  cardOpenModal.innerHTML = moviesRender(filmsWatchedArr);
+                  emptyLibraryMessage.textContent = '';
+              }
+
           }
         } else {
           filmsWatchedArr.push(modalFilm);
         }
+        
         localStorage.setItem('filmsWatched', JSON.stringify(filmsWatchedArr));
 
         monitorButtonStatusTextWatched();
@@ -79,14 +93,28 @@ function onModalOpen(e) {
         }
         if (filmsQueueArr.find(el => el.id === modalFilm.id)) {
           filmsQueueArr = filmsQueueArr.filter(el => el.id !== modalFilm.id);
-          if (filmsQueueArr.length === 0) {
-            cardOpenModal.innerHTML = '';
-            emptyLibraryMessage.textContent = 'You do not have to queue movies to watch. Add them.';
-            paginationEl.classList.add('hidden');
-          } else {
-            cardOpenModal.innerHTML = moviesRender(filmsQueueArr);
-            emptyLibraryMessage.textContent = '';
+
+           if (localStorage.getItem("location") == 'name') {
+              if (filmsQueueArr.length === 0) {
+                cardOpenModal.innerHTML = '';
+                emptyLibraryMessage.textContent = 'You do not have watched movies. Add them.';
+                paginationEl.classList.add('hidden');
+              } else {
+                  cardOpenModal.innerHTML = moviesRender(filmsQueueArr);
+                  emptyLibraryMessage.textContent = '';
+              }
+              } else if (localStorage.getItem("location") == 'library-queued') {
+                          if (filmsQueueArr.length === 0) {
+                cardOpenModal.innerHTML = '';
+                emptyLibraryMessage.textContent = 'You do not have watched movies. Add them.';
+                paginationEl.classList.add('hidden');
+              } else {
+                  cardOpenModal.innerHTML = moviesRender(filmsQueueArr);
+                  emptyLibraryMessage.textContent = '';
+              }
+
           }
+
         } else {
           filmsQueueArr.push(modalFilm);
         }
