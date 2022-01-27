@@ -2,10 +2,9 @@ import axios from 'axios';
 import moviesRender from '../hbs/render.hbs';
 import form from '../hbs/form.hbs';
 
-import { options, pagination } from './pagination__2'; // !!!!!!!!!!!
+import { options, paginationForHome } from './pagination__2';
 
 const main = document.querySelector('main');
-const paginationEl = document.getElementById('pagination');
 
 const addDataToLocalStorage = (localStorageKey, moviesArray) => {
   localStorage.setItem(localStorageKey, JSON.stringify(moviesArray));
@@ -47,15 +46,8 @@ export const initialData = {
 
   totalResults: 0,
   moviesArrayCurrent: [],
-  currentPageStatus: 'fetch',
-  //currentPageStatus - статус поточної сторінки:
-  // 'fetch' - на сторінці відображаються фільми за запитом,
-  // 'watched' - на сторінці відображаються фільми з категорії 'watched',
-  //'queue' - на сторінці відображаються фільми з категорії 'queue',
-  moviesArrayWatched: JSON.parse(localStorage.getItem('Watched')) || [],
-  moviesArrayQueue: JSON.parse(localStorage.getItem('Queued')) || [],
-  genresArray: [], // видалити після зміни запиту на жанри
-  // location: '',
+  moviesArrayFetch: [],
+  genresArray: [],
 
   async genresList() {
     await axios
@@ -116,28 +108,16 @@ export const initialData = {
         const moviesData = response.data;
         this.totalResults = moviesData.total_results;
         this.moviesArrayCurrent = moviesData.results;
-        options.totalItems = moviesData.total_results; // !!!!!!!!!!!
-        options.page = moviesData.page; // !!!!!!!!!!!
+        this.moviesArrayFetch = moviesData.results;
+        options.totalItems = moviesData.total_results;
+        options.page = moviesData.page;
         this.namingGenres(this.moviesArrayCurrent);
         this.yearsForCard(this.moviesArrayCurrent);
         MOVIES_SET.innerHTML = moviesRender(this.moviesArrayCurrent);
-        pagination(); // !!!!!!!!!!!
+        paginationForHome();
         return moviesData;
       })
       .catch(); // дописати error
-  },
-
-  async firstRequest() {
-    this.url = 'trending/movie/day';
-    this.params = {
-      api_key: KEY,
-      page: 1,
-      language: 'en-US',
-    };
-    this.request();
-    localStorage.setItem('location', 'home');
-    // this.location = 'home';
-    // console.log(this.location);
   },
 
   async firstLoadingPage() {
