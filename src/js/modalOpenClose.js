@@ -26,6 +26,7 @@ export let findId;
 export let modalFilm;
 
 function onModalOpen(e) {
+  modalEl.innerHTML = '';
   let target = e.target;
   const currentTarget = e.currentTarget;
 
