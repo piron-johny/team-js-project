@@ -17,6 +17,7 @@ const emptyLibraryMessage = document.querySelector('.empty-library');
 const renderMyLibarary = event => {
   event.preventDefault();
   localStorage.setItem('location', 'library-watched');
+  initialData.moviesArrayCurrent = JSON.parse(localStorage.getItem('filmsWatched')) || [];
 
   moviesSet.innerHTML = moviesRender(initialData.moviesArrayWatched);
   renderWatchedFilmList();
@@ -43,6 +44,7 @@ btnMyLibrary.addEventListener('click', renderMyLibarary);
 
 function renderWatchedFilmList() {
   localStorage.setItem('location', 'library-watched');
+  initialData.moviesArrayCurrent = JSON.parse(localStorage.getItem('filmsWatched')) || [];
   moviesSet.innerHTML = '';
   let watchedFilmListFromLS = localStorage.getItem('filmsWatched');
   let currentPage = 1;
@@ -89,6 +91,7 @@ function renderWatchedFilmList() {
 watchedBtn.addEventListener('click', renderWatchedFilmList);
 function renderQueuedFilmList() {
   localStorage.setItem('location', 'library-queued');
+  initialData.moviesArrayCurrent = JSON.parse(localStorage.getItem('filmsQueue')) || [];
   watchedBtn.classList.remove('superactive');
   moviesSet.innerHTML = '';
   let queueFilmListFromLS = localStorage.getItem('filmsQueue');
