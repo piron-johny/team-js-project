@@ -1,15 +1,18 @@
 import modalRender from '../hbs/modalRender.hbs';
-import moviesRender from '../hbs/render.hbs';
 import { initialData } from './initialData';
+import moviesRender from '../hbs/render.hbs';
+import { options, paginationForLibrary } from './pagination__2';
 
 const body = document.querySelector('body');
 const btnCloseModal = document.querySelector('[data-modal-close]');
 const backdropModalEl = document.querySelector('[data-backdrop]');
 const cardOpenModal = document.querySelector('.section-movies__set');
 const modalEl = document.querySelector('.modal__card');
-const emptyLibraryMessage = document.querySelector('.empty-library');
-const paginationEl = document.getElementById('pagination');
-const elasticList = document.querySelector('.search-list');
+const moviesSet = document.querySelector('.section-movies__set');
+
+export const emptyLibraryMessage = document.querySelector('.empty-library');
+// const paginationEl = document.getElementById('pagination');
+// const elasticList = document.querySelector('.search-list');
 
 cardOpenModal.addEventListener('click', onModalOpen);
 btnCloseModal.addEventListener('click', onModalClose);
@@ -19,6 +22,9 @@ backdropModalEl.addEventListener('click', onBackdropClick);
 
 window.addEventListener('keydown', onEscPress);
 
+export let findId;
+export let modalFilm;
+
 function onModalOpen(e) {
   modalEl.innerHTML = '';
   let target = e.target;
@@ -27,117 +33,127 @@ function onModalOpen(e) {
   const temp = (target, currentTarget) => {
     if (target === cardOpenModal) return;
     if (target.parentElement === currentTarget) {
-      backdropModalEl.classList.remove('is-hidden');
-      body.style.overflow = 'hidden';
+        backdropModalEl.classList.remove('is-hidden');
+        body.style.overflow = 'hidden';
 
-      const findId = +target.id;
-      // console.log(target)
-      // console.log(target.id)
-      const modalFilm = initialData.moviesArrayCurrent.find(film => film.id === findId);
-      modalEl.insertAdjacentHTML('beforeend', modalRender(modalFilm));
+        if (localStorage.getItem('location') === 'home') { 
+            initialData.moviesArrayCurrent = initialData.moviesArrayFetch;
+        };
 
-      const btnWatched = document.querySelector('[data-modal-watched]');
-      const btnQueued = document.querySelector('[data-modal-queue]');
+        findId = +target.id;
+        modalFilm = initialData.moviesArrayCurrent.find(film => film.id === findId);
+        modalEl.innerHTML = modalRender(modalFilm);
 
-      monitorButtonStatusTextWatched();
-      monitorButtonStatusTextQueue();
-      btnWatched.addEventListener('click', () => {
-        let filmsWatchedArr = [];
-        let localStorageData = localStorage.getItem('filmsWatched');
-        if (localStorageData !== null) {
-          filmsWatchedArr.push(...JSON.parse(localStorageData));
-        }
-        if (filmsWatchedArr.find(el => el.id === modalFilm.id)) {
-          filmsWatchedArr = filmsWatchedArr.filter(el => el.id !== modalFilm.id);
-
-          if (localStorage.getItem('location') == 'name') {
-            if (filmsWatchedArr.length === 0) {
-              cardOpenModal.innerHTML = '';
-              emptyLibraryMessage.textContent = 'You do not have watched movies. Add them.';
-              paginationEl.classList.add('hidden');
-            } else {
-              cardOpenModal.innerHTML = moviesRender(filmsWatchedArr);
-              emptyLibraryMessage.textContent = '';
-            }
-          } else if (localStorage.getItem('location') == 'library-watched') {
-            if (filmsWatchedArr.length === 0) {
-              cardOpenModal.innerHTML = '';
-              emptyLibraryMessage.textContent = 'You do not have watched movies. Add them.';
-              paginationEl.classList.add('hidden');
-            } else {
-              cardOpenModal.innerHTML = moviesRender(filmsWatchedArr);
-              emptyLibraryMessage.textContent = '';
-            }
-          }
-        } else {
-          filmsWatchedArr.push(modalFilm);
-        }
-
-        localStorage.setItem('filmsWatched', JSON.stringify(filmsWatchedArr));
-
+        let filmsWatchedArr = JSON.parse(localStorage.getItem('filmsWatched')) || [];
+        let filmsQueuedArr = JSON.parse(localStorage.getItem('filmsQueue')) || [];
+        const btnAddRemoveWatched = document.querySelector('[data-modal-watched]');
+        const btnAddRemoveQueued = document.querySelector('[data-modal-queue]');
         monitorButtonStatusTextWatched();
-      });
-
-      function monitorButtonStatusTextWatched() {
-        let localStorageFilmsWatched = localStorage.getItem('filmsWatched');
-        if (localStorageFilmsWatched === null) {
-          btnWatched.textContent = 'Add to watched';
-        } else if (JSON.parse(localStorageFilmsWatched).find(el => el.id === modalFilm.id)) {
-          btnWatched.textContent = 'Delete from watched';
-          btnWatched.classList.add('btn__active');
-        } else {
-          btnWatched.textContent = 'Add to watched';
-          btnWatched.classList.remove('btn__active');
-        }
-      }
-
-      btnQueued.addEventListener('click', () => {
-        let filmsQueueArr = [];
-        let localStorageData = localStorage.getItem('filmsQueue');
-        if (localStorageData !== null) {
-          filmsQueueArr.push(...JSON.parse(localStorageData));
-        }
-        if (filmsQueueArr.find(el => el.id === modalFilm.id)) {
-          filmsQueueArr = filmsQueueArr.filter(el => el.id !== modalFilm.id);
-
-          if (localStorage.getItem('location') == 'name') {
-            if (filmsQueueArr.length === 0) {
-              cardOpenModal.innerHTML = '';
-              emptyLibraryMessage.textContent = 'You do not have watched movies. Add them.';
-              paginationEl.classList.add('hidden');
-            } else {
-              cardOpenModal.innerHTML = moviesRender(filmsQueueArr);
-              emptyLibraryMessage.textContent = '';
-            }
-          } else if (localStorage.getItem('location') == 'library-queued') {
-            if (filmsQueueArr.length === 0) {
-              cardOpenModal.innerHTML = '';
-              emptyLibraryMessage.textContent = 'You do not have watched movies. Add them.';
-              paginationEl.classList.add('hidden');
-            } else {
-              cardOpenModal.innerHTML = moviesRender(filmsQueueArr);
-              emptyLibraryMessage.textContent = '';
-            }
-          }
-        } else {
-          filmsQueueArr.push(modalFilm);
-        }
-        localStorage.setItem('filmsQueue', JSON.stringify(filmsQueueArr));
         monitorButtonStatusTextQueue();
-      });
-      function monitorButtonStatusTextQueue() {
-        let localStorageFilmsQueue = localStorage.getItem('filmsQueue');
-        if (localStorageFilmsQueue === null) {
-          btnQueued.textContent = 'Add to queue';
-        } else if (JSON.parse(localStorageFilmsQueue).find(el => el.id === modalFilm.id)) {
-          btnQueued.textContent = 'Delete from queue';
-          btnQueued.classList.add('btn__active');
-        } else {
-          btnQueued.textContent = 'Add to queue';
-          btnQueued.classList.remove('btn__active');
-        }
-      }
-      return;
+
+
+        const changeWatched = () => {
+            if (filmsWatchedArr.length === 0) {
+                emptyLibraryMessage.textContent = '';
+                filmsWatchedArr.push(modalFilm);
+                localStorage.setItem('filmsWatched', JSON.stringify(filmsWatchedArr));
+                if (localStorage.getItem('location') === 'library-watched') {
+                    initialData.moviesArrayCurrent = filmsWatchedArr;
+                    moviesSet.innerHTML = moviesRender(initialData.moviesArrayCurrent);
+                };
+                monitorButtonStatusTextWatched();
+                return;
+            };
+            if (filmsWatchedArr.length !== 0 && filmsWatchedArr.find(el => el.id === findId)) {
+                filmsWatchedArr = filmsWatchedArr.filter(el => el.id !== findId);
+                localStorage.setItem('filmsWatched', JSON.stringify(filmsWatchedArr));
+                initialData.moviesArrayCurrent = filmsWatchedArr;
+                options.totalItems = initialData.moviesArrayCurrent.length;
+                if (localStorage.getItem('location') === 'library-watched') {
+                    options.totalItems = initialData.moviesArrayCurrent.length;
+                    paginationForLibrary();
+                };
+                if (filmsWatchedArr.length === 0) {
+                    emptyLibraryMessage.textContent = 'You do not have watched movies. Add them.';
+                };
+                monitorButtonStatusTextWatched();
+                return;
+            };
+            filmsWatchedArr.push(modalFilm);
+            localStorage.setItem('filmsWatched', JSON.stringify(filmsWatchedArr));
+            initialData.moviesArrayCurrent = filmsWatchedArr;
+            options.totalItems = initialData.moviesArrayCurrent.length;
+            if (localStorage.getItem('location') === 'library-watched') {
+                options.totalItems = initialData.moviesArrayCurrent.length;
+                paginationForLibrary();
+            };
+            monitorButtonStatusTextWatched();
+            return;
+        };
+
+        const changeQueued = () => {
+            if (filmsQueuedArr.length === 0) {
+                emptyLibraryMessage.textContent = '';
+                filmsQueuedArr.push(modalFilm);
+                localStorage.setItem('filmsQueue', JSON.stringify(filmsQueuedArr));
+                if (localStorage.getItem('location') === 'library-queued') {
+                    initialData.moviesArrayCurrent = filmsQueuedArr;
+                    moviesSet.innerHTML = moviesRender(initialData.moviesArrayCurrent);
+                };
+                monitorButtonStatusTextQueue();
+                return;
+            };
+            if (filmsQueuedArr.length !== 0 && filmsQueuedArr.find(el => el.id === findId)) {
+                filmsQueuedArr = filmsQueuedArr.filter(el => el.id !== findId);
+                localStorage.setItem('filmsQueue', JSON.stringify(filmsQueuedArr));
+                initialData.moviesArrayCurrent = filmsQueuedArr;
+                options.totalItems = initialData.moviesArrayCurrent.length;
+                if (localStorage.getItem('location') === 'library-queued') {
+                    options.totalItems = initialData.moviesArrayCurrent.length;
+                    paginationForLibrary();
+                };
+                if (filmsQueuedArr.length === 0) {
+                    emptyLibraryMessage.textContent = 'You do not have to queue movies to watch. Add them.';
+                };
+                monitorButtonStatusTextQueue();
+                return;
+            };
+            filmsQueuedArr.push(modalFilm);
+            localStorage.setItem('filmsQueue', JSON.stringify(filmsQueuedArr));
+            initialData.moviesArrayCurrent = filmsQueuedArr;
+            options.totalItems = initialData.moviesArrayCurrent.length;
+            if (localStorage.getItem('location') === 'library-queued') {
+                options.totalItems = initialData.moviesArrayCurrent.length;
+                paginationForLibrary();
+            };
+            monitorButtonStatusTextQueue();
+            return;          
+        };
+
+        btnAddRemoveWatched.addEventListener('click', changeWatched);
+        btnAddRemoveQueued.addEventListener('click', changeQueued);
+
+        function monitorButtonStatusTextWatched() {
+            if (filmsWatchedArr.length !== 0 && filmsWatchedArr.find(el => el.id === findId)) {
+                btnAddRemoveWatched.textContent = 'Delete from watched';
+                btnAddRemoveWatched.classList.add('btn__active');
+                return;
+            };
+            btnAddRemoveWatched.textContent = 'Add to watched';
+            btnAddRemoveWatched.classList.remove('btn__active');
+        };
+
+        function monitorButtonStatusTextQueue() {
+            if (filmsQueuedArr.length !== 0 && filmsQueuedArr.find(el => el.id === findId)) {
+                btnAddRemoveQueued.textContent = 'Delete from queue';
+                btnAddRemoveQueued.classList.add('btn__active');
+                return;
+            };
+            btnAddRemoveQueued.textContent = 'Add to queue';
+            btnAddRemoveQueued.classList.remove('btn__active');
+        };
+
+        return;
     }
     target = target.parentElement;
     temp(target, currentTarget);
@@ -151,7 +167,6 @@ function onModalOpen(e) {
 function onModalClose() {
   backdropModalEl.classList.add('is-hidden');
   changeParam();
-  // modalEl.innerHTML = '';
 }
 
 function onBackdropClick(e) {
