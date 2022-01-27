@@ -20,6 +20,7 @@ backdropModalEl.addEventListener('click', onBackdropClick);
 window.addEventListener('keydown', onEscPress);
 
 function onModalOpen(e) {
+  modalEl.innerHTML = '';
   let target = e.target;
   const currentTarget = e.currentTarget;
 
@@ -150,7 +151,7 @@ function onModalOpen(e) {
 function onModalClose() {
   backdropModalEl.classList.add('is-hidden');
   changeParam();
-  modalEl.innerHTML = '';
+  // modalEl.innerHTML = '';
 }
 
 function onBackdropClick(e) {
