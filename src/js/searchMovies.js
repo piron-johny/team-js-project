@@ -8,7 +8,7 @@
 // const searchType = document.querySelector('#search');
 // const debounce = require('lodash.debounce');
 // const DEBOUNCE_DELAY = 300;
-// // const searchList = document.querySelector('.search-list');
+// const searchList = document.querySelector('.search-list');
 
 // input.addEventListener('focus', () => {
 //   searchType.checked = 'true';
@@ -27,12 +27,12 @@
 //   }
 //   // searchList.innerHTML = '';
 //   initialData.params.page = 1;
-//   // searchList.innerHTML = searchListRender(initialData.moviesArrayCurrent);
+//   searchList.innerHTML = searchListRender(initialData.moviesArrayCurrent);
 
 //   initialData.request().then(data => {
 //     if (initialData.totalResults === 0) {
 //       //   paginationEl.classList.add('hidden');
-//       notification.style.display = 'block';
+//       // notification.style.display = 'block';
 //       setTimeout(() => {
 //         notification.style.display = 'none';
 //         input.value = '';
@@ -58,6 +58,8 @@
 // };
 
 // input.addEventListener('input', searchReset);
+
+// ----------------------------------------------------------
 
 import { initialData } from './initialData';
 const notification = document.querySelector('.change-block__notification');
