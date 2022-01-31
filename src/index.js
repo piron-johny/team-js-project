@@ -1,5 +1,5 @@
 import './sass/main.scss';
-// import './js/form-login';
+import './js/form-login';
 // import './js/pagination.js';
 // import './js/pagination__2';
 import './js/movies';

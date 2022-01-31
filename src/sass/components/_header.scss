@@ -132,6 +132,16 @@
       left: 20px;
     }
   }
+
+  &--login {
+    width: 60px;
+    text-transform: uppercase;
+    &::before {
+      content: '';
+      width: 35px;
+      left: 13px;
+    }
+  }
 }
 
 .text-logo {
@@ -182,7 +192,7 @@
   }
 }
 
-input {
+header input {
   background: transparent;
   border: none;
   text-align: left;

@@ -1,17 +1,25 @@
 import { getUserId } from './servisesAPI';
 import { userInfo } from './servisesAPI';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-const axios = require('axios');
+import loginMarkup from '../hbs/login-form.hbs'
+import registrationMarkup from '../hbs/registration-form.hbs'
 
-const formReg = document.querySelector('#login-form-post');
-const formLog = document.querySelector('#login-form-get');
+const axios = require('axios');
+const backdropModalEl = document.querySelector('[data-backdrop]')
+const modalEl = document.querySelector('.modal')
+// const formReg = document.querySelector('#login-form-post');
+// const formLog = document.querySelector('#login-form-get');
+const loginBtn = document.querySelector('#login')
 const SERVER_URL =
   'https://team-project-1da18-default-rtdb.europe-west1.firebasedatabase.app/users';
 
 let USER_ID = '';
+console.log('login', loginBtn);
 
-formReg.addEventListener('submit', onRegistrationForm);
-formLog.addEventListener('submit', onLoginForm);
+loginBtn.addEventListener('click', onLoginBtnClick)
+
+// formReg.addEventListener('submit', onRegistrationForm);
+// formLog.addEventListener('submit', onLoginForm);
 
 async function onRegistrationForm(e) {
   e.preventDefault();
@@ -19,15 +27,15 @@ async function onRegistrationForm(e) {
   const name = e.target.elements.userName.value;
   const email = e.target.elements.userEmail.value;
   const password = e.target.elements.userPassword1.value;
-  const passwordTwo = e.target.elements.userPassword2.value;
+  const rePassword = e.target.elements.userRePassword.value;
 
-  if (!name || !email || !password || !passwordTwo) return;
+  if (!name || !email || !password || !rePassword) return;
 
   if (password.length < 6) {
     Notify.success('Пароль не может быть меньше 6 знаков!');
     return;
   }
-  if (password !== passwordTwo) {
+  if (password !== rePassword) {
     Notify.success('Пароли не совпадают!');
     return;
   }
@@ -114,3 +122,17 @@ async function postUserId(email, pass) {
   return;
 }
 
+function onLoginBtnClick() {
+  backdropModalEl.classList.remove('is-hidden');
+  modalEl.innerHTML = '';
+  modalEl.insertAdjacentHTML('afterbegin', loginMarkup())
+
+  const registrationBtn = document.querySelector('.form__link')
+  registrationBtn.addEventListener('click', onRegistrationBtnCklick)
+}
+
+function onRegistrationBtnCklick(e) {
+  e.preventDefault()
+  modalEl.innerHTML = '';
+  modalEl.insertAdjacentHTML('afterbegin', registrationMarkup())
+}
